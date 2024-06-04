@@ -1,0 +1,77 @@
+
+.container {
+	width: 100vw;
+	height: 100vh;
+}
+
+.main {
+	width: 100%;
+	height: 80%;
+	display: flex;
+	align-items: start;
+	justify-content: center;
+	padding: 50px;
+}
+
+.mainContent {
+	display: grid;
+	gap: 50px;
+	justify-items: center;
+}
+
+.h1 {
+	text-align: center;
+	font-size: 40px;
+}
+
+.p {
+	font-size: 22px;
+	width: 800px;
+	text-align: center;
+	font-weight: 400;
+	letter-spacing: 1.2px;
+}
+
+.image {
+	width: 180px;
+	height: 250px;
+}
+
+.carousel {
+	display: flex;
+	gap: 20px;
+}
+
+.item {
+	padding: 10px 20px;
+	background-color: rgba(0, 0, 0, .05);
+	border-radius: 15px;
+	cursor: pointer;
+	display: grid;
+}
+
+.label {
+	text-align: center;
+	font-size: 18px;
+}
+
+.ulContainer {
+	width: 100%;
+	height: 25px;
+}
+
+.ul {
+	display: flex;
+	padding: 0;
+	margin: 0;
+	justify-content: center;
+}
+
+.li {
+	margin-right: 35px;
+	cursor: pointer;
+}
+
+.li:last-child {
+	margin-right: 0; 
+}
