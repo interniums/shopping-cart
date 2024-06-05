@@ -9,6 +9,5 @@ export default function getRandomObjects(arr) {
 		[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
 	}
 	const newArray = shuffled.slice(0, 5)
-	console.log(newArray)
 	return newArray
 }

@@ -1,0 +1,93 @@
+
+.container {
+	width: 100%;
+	display: flex;
+	align-items: start;
+}
+
+.nav {
+	margin-top: 50px;
+	padding-left: 30px;
+	width: 250px;
+	margin-right: 40px;
+}
+
+.rarityContainer {
+	display: grid;
+	gap: 15px;
+}
+
+.rarityh2 {
+	font-size: 30px;
+}
+
+.rarityOptions {
+	display: grid;
+	gap: 10px;
+	font-size: 20px;
+}
+
+.attackContainer {
+	display: grid;
+	gap: 35px;
+	width: max-content;
+	margin-top: 20px;
+}
+
+.attackOptions {
+	display: flex;
+	gap: 20px;
+}
+
+.main {
+	margin-top: 50px;
+	width: 100%;
+}
+
+.option {
+	display: flex;
+	align-items: center;
+}
+
+.collectionContainer {
+	display: grid;
+	gap: 15px;
+}
+
+.loading {
+	text-align: center;
+	margin-right: 20px;
+}
+
+.gif {
+	margin-right: 20px;
+	border-radius: 50%;
+	width: 280px;
+	height: 280px;
+	object-fit: cover;
+}
+
+.itemsContainer {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 40px;
+	padding: 20px 60px;
+}
+
+.itemContainer {
+	display: grid;
+	justify-content: center;
+	background-color: rgba(0, 0, 0, .2);
+	border-radius: 15px;
+	padding: 20px 0px;
+	justify-items: center;
+}
+
+.itemImage {
+	width: 200px;
+	margin-top: -15px;
+}
+
+.rarityImg {
+	width: 20px;
+}

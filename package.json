@@ -4,6 +4,8 @@
     "@emotion/styled": "^11.11.5",
     "@mui/icons-material": "^5.15.19",
     "@mui/material": "^5.15.19",
-    "particlesjs": "^2.2.3"
+    "particlesjs": "^2.2.3",
+    "react-parallax-tilt": "^1.7.227",
+    "react-range-slider-input": "^3.0.7"
   }
 }
