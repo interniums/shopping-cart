@@ -24,7 +24,7 @@ export default function ShopPage(props) {
 				}}
 				className={styles.container}>
 			{
-				props.postLoading ? 
+				props.postLoading ?
 				<div>
 					<img className={styles.gif} src={gif} alt="" />
 					<div style={{fontSize: '40px'}} className={styles.loading}>LOADING</div>
@@ -33,6 +33,10 @@ export default function ShopPage(props) {
 					<ShopNav 
 						postLoading={props.postLoading}
 						collections={props.collections}
+						sortRarity={props.sortRarity}
+						sortCollections={props.sortCollections}
+						setSortCollections={props.setSortCollections}
+						setSortRarity={props.setSortRarity}
 						setSortAttack={props.setSortAttack}
 					/>
 					<main className={styles.main}>

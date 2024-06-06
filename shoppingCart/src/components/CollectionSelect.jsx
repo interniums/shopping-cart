@@ -34,9 +34,14 @@ export default function CollectionSelect(props) {
 
   const handleChange = (event) => {
     const {
-      target: { value },
-    } = event;
-    setPersonName(
+      target: value ,
+    } = event
+    if (props.sortCollections.includes(value.value[0])) {
+			props.setSortCollections(props.sortCollections.filter(item => item !== value.value[0]))
+		} else {
+			props.setSortCollections(prevSort => [...prevSort, value.value[0]])
+		}
+		setPersonName(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     )
@@ -96,6 +101,13 @@ export default function CollectionSelect(props) {
           )}
           MenuProps={MenuProps}
         >
+						<MenuItem
+              key={'All'}
+              value={'All'}
+              style={getStyles(name, personName, theme)}
+            >
+              All
+            </MenuItem>
           {name.map((name) => (
             <MenuItem
               key={name}

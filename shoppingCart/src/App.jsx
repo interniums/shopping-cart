@@ -13,12 +13,15 @@ function App() {
 	const [postLoading, setPostLoading] = useState(true)
 	const [collections, setCollections] = useState(null)
 	const [maindata, setMaindata] = useState()
-	const [sortAttack, setSortAttack] = useState([0, 13])
-	const [sortCollections, setSortCollections] = useState(['The League of Explorers', 'Murder at Castle Nathria', 'Festival of Legends', 'Knights of the Frozen Throne', 'Mean Streets of Gadgetzan', 'Legacy', 'Vanilla', 'Ashes of Outland', 'United in Stormwind', "Whizbang's Workshop", 'Core', 'Classic', 'Saviors of Uldum', 'Voyage to the Sunken City', 'Rise of Shadows', 'Forged in the Barrens', 'Whispers of the Old Gods', 'Showdown in the Badlands', 'Madness At The Darkmoon Faire', 'The Witchwood', "Journey to Un'Goro", 'Goblins vs Gnomes', 'Descent of Dragons', 'Scholomance Academy', 'The Grand Tournament', "Rastakhan's Rumble"])
-	const [sortRarity, setSortRarity] = useState(['Free', 'Common', 'Epic', 'Legendary'])
-	console.log(data)
-	console.log(maindata)
-	// console.log(collections)
+	const [sortRarity, setSortRarity] = useState([])
+	const [sortCollections, setSortCollections] = useState([])
+	const [sortAttack, setSortAttack] = useState([])
+	// console.log(sortRarity)
+	// console.log(sortAttack)
+	console.log(sortCollections)
+	// console.log(data)
+	// console.log(postLoading)
+	// console.log(maindata)
 
 	useEffect(() => {
 		if (loading) {
@@ -33,18 +36,21 @@ function App() {
 
 	useEffect(() => {
 		if (data) {
-			setMaindata(sortData(data, sortAttack, sortCollections, sortRarity))
+			// setMaindata(data)
+			setMaindata(sortData(data, sortRarity, sortCollections, sortAttack))
 			setPostLoading(false)
 		}
-	}, [data, sortAttack, sortCollections, sortRarity])
+	}, [data, sortRarity, sortAttack, sortCollections])
 
   return (
 		<>
 			{/* <HomePage postLoading={postLoading} random={random}/> */}
 			<ShopPage 
-				setSortRarity={setSortRarity} 
-				setSortCollections={setSortCollections} 
 				setSortAttack={setSortAttack}
+				sortRarity={sortRarity}
+				setSortRarity={setSortRarity}
+				sortCollections={sortCollections}
+				setSortCollections={setSortCollections}
 				data={maindata} 
 				collections={collections} 
 				postLoading={postLoading}
