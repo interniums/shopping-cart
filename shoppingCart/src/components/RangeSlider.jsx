@@ -1,16 +1,18 @@
+/* eslint-disable react/prop-types */
 import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
 import { useState } from 'react'
 
 function valuetext(value) {
-  return `${value}°C`
+  return `${value}`
 }
 
-export default function RangeSlider() {
-  const [value, setValue] = useState([20, 37])
+export default function RangeSlider(props) {
+  const [value, setValue] = useState([1, 13])
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setValue(newValue)
+		props.setSortAttack(newValue)
   }
 
   return (

@@ -20,7 +20,7 @@ export default function ShopPage(props) {
 				style={{
 					justifyContent: props.postLoading ? 'center' : 'start',
 					alignItems: props.postLoading ? 'center' : 'start',
-					marginTop: props.postLoading ? '20%' : '0%'
+					marginTop: props.postLoading ? '10%' : '0%'
 				}}
 				className={styles.container}>
 			{
@@ -30,9 +30,13 @@ export default function ShopPage(props) {
 					<div style={{fontSize: '40px'}} className={styles.loading}>LOADING</div>
 				</div> : 
 				<>
-					<ShopNav postLoading={props.postLoading} collections={props.collections}/>
+					<ShopNav 
+						postLoading={props.postLoading}
+						collections={props.collections}
+						setSortAttack={props.setSortAttack}
+					/>
 					<main className={styles.main}>
-						<h3>Cards({props.data.length})</h3>
+						<h3 style={{ marginLeft: '60px'}}>Cards({props.data.length})</h3>
 							<div className={styles.itemsContainer}>
 								{props.data.map(item => (
 									<Tilt
