@@ -4,6 +4,7 @@ import RangeSlider from './RangeSlider.jsx'
 import Checkbox from '@mui/material/Checkbox'
 import styles from '../css/ShopPage.module.css'
 import CollectionSelect from './CollectionSelect.jsx'
+import CollectionSelect2 from './CollectionSelect2.jsx'
 
 export default function ShopNav(props) {
 
@@ -22,6 +23,7 @@ export default function ShopNav(props) {
 				<div className={styles.rarityOptions}>
 				<div className={styles.option}>
 						<Checkbox
+							defaultChecked={true}
 							onClick={() => sortingRarity('All')}
 							sx={{
 							color: 'rgb(225, 225, 225)',

@@ -91,3 +91,7 @@
 .rarityImg {
 	width: 20px;
 }
+
+.favorite:hover {
+	scale: 115%;
+}

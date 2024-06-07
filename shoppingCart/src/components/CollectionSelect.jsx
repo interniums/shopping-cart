@@ -7,7 +7,7 @@ import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import Chip from '@mui/material/Chip'
 import { useTheme } from '@emotion/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Box } from '@mui/material'
 
 const ITEM_HEIGHT = 48
@@ -30,20 +30,15 @@ function getStyles() {
 export default function CollectionSelect(props) {
   const theme = useTheme()
 	const name = props.collections
-  const [personName, setPersonName] = useState([])
+  const [personName, setPersonName] = useState(['All'])
+	
+	useEffect(() => {
+		props.setSortCollections(personName)
+	}, [props, personName])
 
   const handleChange = (event) => {
-    const {
-      target: value ,
-    } = event
-    if (props.sortCollections.includes(value.value[0])) {
-			props.setSortCollections(props.sortCollections.filter(item => item !== value.value[0]))
-		} else {
-			props.setSortCollections(prevSort => [...prevSort, value.value[0]])
-		}
-		setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
+    setPersonName(
+      typeof event.target.value === 'string' ? event.target.value.split(',') : event.target.value
     )
   }
 
@@ -101,13 +96,13 @@ export default function CollectionSelect(props) {
           )}
           MenuProps={MenuProps}
         >
-						<MenuItem
-              key={'All'}
-              value={'All'}
-              style={getStyles(name, personName, theme)}
-            >
-              All
-            </MenuItem>
+					<MenuItem
+            key={'All'}
+            value={'All'}
+            style={getStyles(name, personName, theme)}
+          >
+            All
+          </MenuItem>
           {name.map((name) => (
             <MenuItem
               key={name}

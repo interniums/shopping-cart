@@ -10,12 +10,18 @@ import legendary from '../assets/legendary.webp'
 import rare from '../assets/rare.webp'
 import getColor from '../utils/getColor.js'
 import Tilt from 'react-parallax-tilt'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import { useReducer, useState } from 'react'
 
 
 export default function ShopPage(props) {
+	const [ignored, forceUpdate] = useReducer(x => x + 1, 0)
 	return(
 		<>
-			<MainHeader collections={props.collections}/>
+			<MainHeader 
+				sortFavorites={props.sortFavorites}
+				setSortFavorites={props.setSortFavorites}	
+			/>
 			<div
 				style={{
 					justifyContent: props.postLoading ? 'center' : 'start',
@@ -43,30 +49,39 @@ export default function ShopPage(props) {
 						<h3 style={{ marginLeft: '60px'}}>Cards({props.data.length})</h3>
 							<div className={styles.itemsContainer}>
 								{props.data.map(item => (
-									<Tilt
-										key={item.cardId}
-										tiltReverse={true}
-										glareEnable={true}
-										glareMaxOpacity={0.5}
-										glareColor='#fffff'
-										glarePosition='all'
-										perspective={1000}
-								>
-										<div className={styles.itemContainer}>
-											<img className={styles.itemImage} src={item.img} alt="" />
-											<div className={styles.itemFooter}>
-												<h2 className={styles.itemName}>{item.name}</h2>
-												<div style={{ display: 'flex', gap: '10px'}}>
-													<p style={{ color: getColor(item.rarity)}}>Rarity: {item.rarity}</p>
-														{item.rarity == 'Common' ? <img className={styles.rarityImg} src={common} alt="" /> : null}
-														{item.rarity == 'Rare' ? <img className={styles.rarityImg} src={rare} alt="" /> : null}
-														{item.rarity == 'Epic' ? <img className={styles.rarityImg} src={epic} alt="" /> : null}
-														{item.rarity == 'Legendary' ? <img className={styles.rarityImg} src={legendary} alt="" /> : null}
+									<div style={{position: 'relative'}} key={item.cardId}>
+											<Tilt
+												tiltReverse={true}
+												tiltMaxAngleX={0}
+												tiltMaxAngleY={7}
+												glareEnable={true}
+												glareMaxOpacity={0.5}
+												glareColor='#fffff'
+												glarePosition='all'
+												perspective={1000}
+										>
+												<div style={{position: 'relative'}} className={styles.itemContainer}>
+													<div onClick={() => {item.favorite ? item.favorite = false : item.favorite = true; forceUpdate()}}>
+														<FavoriteIcon 
+															className={styles.favorite}
+															style={{cursor: 'pointer', position: 'absolute', width: '25px', right: '15px', top: '15px', color: item.favorite ? 'red' : 'white'}}
+														/>
+													</div>
+													<img className={styles.itemImage} src={item.img} alt="" />
+													<div className={styles.itemFooter}>
+														<h2 className={styles.itemName}>{item.name}</h2>
+														<div style={{ display: 'flex', gap: '10px'}}>
+															<p style={{ color: getColor(item.rarity)}}>Rarity: {item.rarity}</p>
+																{item.rarity == 'Common' ? <img className={styles.rarityImg} src={common} alt="" /> : null}
+																{item.rarity == 'Rare' ? <img className={styles.rarityImg} src={rare} alt="" /> : null}
+																{item.rarity == 'Epic' ? <img className={styles.rarityImg} src={epic} alt="" /> : null}
+																{item.rarity == 'Legendary' ? <img className={styles.rarityImg} src={legendary} alt="" /> : null}
+														</div>
+														<p>Collection: {item.cardSet}</p>
+													</div>
 												</div>
-												<p>Collection: {item.cardSet}</p>
-											</div>
-										</div>
-									</Tilt>
+											</Tilt>
+									</div>
 								))}
 							</div>
 					</main>

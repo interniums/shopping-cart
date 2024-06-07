@@ -13,15 +13,17 @@ function App() {
 	const [postLoading, setPostLoading] = useState(true)
 	const [collections, setCollections] = useState(null)
 	const [maindata, setMaindata] = useState()
-	const [sortRarity, setSortRarity] = useState([])
-	const [sortCollections, setSortCollections] = useState([])
-	const [sortAttack, setSortAttack] = useState([])
+	const [sortRarity, setSortRarity] = useState(['All'])
+	const [sortCollections, setSortCollections] = useState(['All'])
+	const [sortAttack, setSortAttack] = useState([1, 13])
+	const [sortFavorites, setSortFavorites] = useState(false)
+	// console.log(sortFavorites)
 	// console.log(sortRarity)
 	// console.log(sortAttack)
-	console.log(sortCollections)
+	// console.log(sortCollections)
 	// console.log(data)
 	// console.log(postLoading)
-	// console.log(maindata)
+	console.log(maindata)
 
 	useEffect(() => {
 		if (loading) {
@@ -36,16 +38,18 @@ function App() {
 
 	useEffect(() => {
 		if (data) {
-			// setMaindata(data)
-			setMaindata(sortData(data, sortRarity, sortCollections, sortAttack))
+			setMaindata(data.map(item => item.favorite = false))
+			setMaindata(sortData(data, sortRarity, sortCollections, sortAttack, sortFavorites))
 			setPostLoading(false)
 		}
-	}, [data, sortRarity, sortAttack, sortCollections])
+	}, [data, sortRarity, sortAttack, sortCollections, sortFavorites])
 
   return (
 		<>
 			{/* <HomePage postLoading={postLoading} random={random}/> */}
 			<ShopPage 
+				sortFavorites={sortFavorites}
+				setSortFavorites={setSortFavorites}
 				setSortAttack={setSortAttack}
 				sortRarity={sortRarity}
 				setSortRarity={setSortRarity}
