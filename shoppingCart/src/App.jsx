@@ -6,6 +6,7 @@ import ShopPage from "./components/ShopPage"
 import getRandomObjects from "./utils/getRandomObjects"
 import getCollections from "./utils/getCollections"
 import sortData from "./utils/SortData"
+import CartComponent from "./components/CartComponent"
 
 function App() {
 	const {data, loading, error} = MurlockFetch()
@@ -38,7 +39,7 @@ function App() {
 
 	useEffect(() => {
 		if (data) {
-			setMaindata(data.map(item => item.favorite = false))
+			setMaindata(data.map(item => {item.favorite = false, item.cart = true}))
 			setMaindata(sortData(data, sortRarity, sortCollections, sortAttack, sortFavorites))
 			setPostLoading(false)
 		}
@@ -47,7 +48,7 @@ function App() {
   return (
 		<>
 			{/* <HomePage postLoading={postLoading} random={random}/> */}
-			<ShopPage 
+			{/* <ShopPage 
 				sortFavorites={sortFavorites}
 				setSortFavorites={setSortFavorites}
 				setSortAttack={setSortAttack}
@@ -57,6 +58,12 @@ function App() {
 				setSortCollections={setSortCollections}
 				data={maindata} 
 				collections={collections} 
+				postLoading={postLoading}
+			/> */}
+			<CartComponent 
+				sortFavorites={sortFavorites}
+				setSortFavorites={setSortFavorites}
+				maindata={maindata}
 				postLoading={postLoading}
 			/>
 		</>

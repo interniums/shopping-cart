@@ -23,7 +23,11 @@ export default function MainHeader(props) {
 				</div>
 				<div className={styles.favContainer}>
 					<div onClick={() => {props.sortFavorites ? props.setSortFavorites(false) : props.setSortFavorites(true)}}>
-						<FavoriteIcon className={styles.icons} fontSize='large'/>
+						<FavoriteIcon 
+							className={styles.icons}
+							fontSize='large'
+							style={{color: props.sortFavorites ? 'red' : 'white'}}	
+						/>
 					</div>
 					<ShoppingCartIcon className={styles.icons} fontSize='large'/>
 				</div>

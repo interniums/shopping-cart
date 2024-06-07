@@ -31,10 +31,9 @@ export default function MurlockFetch() {
 				const filteredRarity = filteredImg.filter( item => {
 					return 'rarity' in item
 				})
-				const filterCollection = filteredRarity.filter( item => item.cardSet !== 'Mercenaries' && item.cardSet !== 'Battlegrounds' && item.name !== 'Murloc Scout')
-        setData(filterCollection)
+				const returnArray = filteredRarity.filter( item => item.cardSet !== 'Mercenaries' && item.cardSet !== 'Battlegrounds' && item.name !== 'Murloc Scout')
+        setData(returnArray)
         setError(null)
-				// setCollections(getCollections(filteredRarity))
       } catch (err) {
         setError(err.message)
         setData(null)

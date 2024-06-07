@@ -12,6 +12,7 @@ import getColor from '../utils/getColor.js'
 import Tilt from 'react-parallax-tilt'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { useReducer, useState } from 'react'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 
 
 export default function ShopPage(props) {
@@ -33,7 +34,7 @@ export default function ShopPage(props) {
 				props.postLoading ?
 				<div>
 					<img className={styles.gif} src={gif} alt="" />
-					<div style={{fontSize: '40px'}} className={styles.loading}>LOADING</div>
+					<div style={{fontSize: '40px'}} className={styles.loading}>LOADING...</div>
 				</div> : 
 				<>
 					<ShopNav 
@@ -46,7 +47,7 @@ export default function ShopPage(props) {
 						setSortAttack={props.setSortAttack}
 					/>
 					<main className={styles.main}>
-						<h3 style={{ marginLeft: '60px'}}>Cards({props.data.length})</h3>
+						<h3 style={{ marginLeft: '60px'}}>{props.sortFavorites ? 'Favorites' : 'Cards'}({props.data.length})</h3>
 							<div className={styles.itemsContainer}>
 								{props.data.map(item => (
 									<div style={{position: 'relative'}} key={item.cardId}>
@@ -65,6 +66,12 @@ export default function ShopPage(props) {
 														<FavoriteIcon 
 															className={styles.favorite}
 															style={{cursor: 'pointer', position: 'absolute', width: '25px', right: '15px', top: '15px', color: item.favorite ? 'red' : 'white'}}
+														/>
+													</div>
+													<div onClick={() => {item.cart ? item.cart = false : item.cart = true; forceUpdate()}}>
+														<ShoppingCartIcon 
+															className={styles.cart}
+															style={{cursor: 'pointer', position: 'absolute', width: '25px', right: '15px', top: '50px', color: item.cart ? 'green' : 'white'}}
 														/>
 													</div>
 													<img className={styles.itemImage} src={item.img} alt="" />

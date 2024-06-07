@@ -1,0 +1,23 @@
+.gif {
+	margin-right: 20px;
+	border-radius: 50%;
+	width: 280px;
+	height: 280px;
+	object-fit: cover;
+}
+
+.loading {
+	text-align: center;
+	margin-right: 20px;
+}
+
+.container {
+	width: 100%;
+	display: flex;
+	align-items: start;
+}
+
+.items {
+	width: 65%;
+	height: max-content;
+}
