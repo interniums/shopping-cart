@@ -1,13 +1,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react"
-import getCollections from "./getCollections"
+import getCollections from "../utils/getCollections"
 
-export default function MurlockFetch() {
+export default function useMurlockFetch() {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-	// const [collections, setCollections] = useState()
 
   useEffect(() => {
     const fetchDataForPosts = async () => {
@@ -31,7 +30,10 @@ export default function MurlockFetch() {
 				const filteredRarity = filteredImg.filter( item => {
 					return 'rarity' in item
 				})
-				const returnArray = filteredRarity.filter( item => item.cardSet !== 'Mercenaries' && item.cardSet !== 'Battlegrounds' && item.name !== 'Murloc Scout')
+				let returnArray = filteredRarity.filter( item => item.cardSet !== 'Mercenaries' && item.cardSet !== 'Battlegrounds' && item.name !== 'Murloc Scout')
+
+				returnArray = returnArray.map(item => ({...item, favorite: false, cart: true}))
+
         setData(returnArray)
         setError(null)
       } catch (err) {

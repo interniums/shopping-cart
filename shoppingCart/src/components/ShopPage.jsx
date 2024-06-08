@@ -47,9 +47,9 @@ export default function ShopPage(props) {
 						setSortAttack={props.setSortAttack}
 					/>
 					<main className={styles.main}>
-						<h3 style={{ marginLeft: '60px'}}>{props.sortFavorites ? 'Favorites' : 'Cards'}({props.data.length})</h3>
+						<h3 style={{ marginLeft: '60px'}}>{props.sortFavorites ? 'Favorites' : 'Cards'}({props.data?.length})</h3>
 							<div className={styles.itemsContainer}>
-								{props.data.map(item => (
+								{props.data?.map(item => (
 									<div style={{position: 'relative'}} key={item.cardId}>
 											<Tilt
 												tiltReverse={true}

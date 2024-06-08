@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
-import { cloneElement, useEffect, useState } from "react"
+import { cloneElement, useEffect, useMemo, useState } from "react"
 import HomePage from "./components/HomePage"
-import MurlockFetch from "./utils/MurlockFetch"
+import useMurlockFetch from "./hooks/useMurlockFetch"
 import ShopPage from "./components/ShopPage"
 import getRandomObjects from "./utils/getRandomObjects"
 import getCollections from "./utils/getCollections"
@@ -9,10 +9,7 @@ import sortData from "./utils/SortData"
 import CartComponent from "./components/CartComponent"
 
 function App() {
-	const {data, loading, error} = MurlockFetch()
-	const [random, setRandom] = useState(null)
-	const [postLoading, setPostLoading] = useState(true)
-	const [collections, setCollections] = useState(null)
+	const {data, loading, error} = useMurlockFetch()
 	const [maindata, setMaindata] = useState()
 	const [sortRarity, setSortRarity] = useState(['All'])
 	const [sortCollections, setSortCollections] = useState(['All'])
@@ -24,30 +21,26 @@ function App() {
 	// console.log(sortCollections)
 	// console.log(data)
 	// console.log(postLoading)
-	console.log(maindata)
+	// console.log(maindata)
 
-	useEffect(() => {
-		if (loading) {
-			null
-		} else if (error) {
-			null
-		} else if (data) {
-			setRandom(getRandomObjects(data))
-			setCollections(getCollections(data))
-		} 
-	}, [data, loading, error])
+	const random = useMemo(() => {
+		if (!data) return []
+		return getRandomObjects(data)
+	}, [data])
 
-	useEffect(() => {
-		if (data) {
-			setMaindata(data.map(item => {item.favorite = false, item.cart = true}))
-			setMaindata(sortData(data, sortRarity, sortCollections, sortAttack, sortFavorites))
-			setPostLoading(false)
-		}
-	}, [data, sortRarity, sortAttack, sortCollections, sortFavorites])
+	const collections = useMemo(() => {
+		if (!data) return []
+		return getCollections(data)
+	}, [data])
+
+	const sortedData = useMemo(() => {
+		if (!data) return []
+		return sortData(data, sortRarity, sortCollections, sortAttack, sortFavorites)
+	}, [data, sortRarity, sortCollections, sortAttack, sortFavorites])
 
   return (
 		<>
-			{/* <HomePage postLoading={postLoading} random={random}/> */}
+			{/* <HomePage postLoading={loading} random={random}/> */}
 			{/* <ShopPage 
 				sortFavorites={sortFavorites}
 				setSortFavorites={setSortFavorites}
@@ -56,15 +49,15 @@ function App() {
 				setSortRarity={setSortRarity}
 				sortCollections={sortCollections}
 				setSortCollections={setSortCollections}
-				data={maindata} 
+				data={sortedData} 
 				collections={collections} 
-				postLoading={postLoading}
+				postLoading={loading}
 			/> */}
 			<CartComponent 
 				sortFavorites={sortFavorites}
 				setSortFavorites={setSortFavorites}
-				maindata={maindata}
-				postLoading={postLoading}
+				data={data}
+				postLoading={loading}
 			/>
 		</>
 	)

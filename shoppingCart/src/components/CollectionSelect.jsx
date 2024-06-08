@@ -103,7 +103,7 @@ export default function CollectionSelect(props) {
           >
             All
           </MenuItem>
-          {name.map((name) => (
+          {name?.map((name) => (
             <MenuItem
               key={name}
               value={name}

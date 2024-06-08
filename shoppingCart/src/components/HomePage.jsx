@@ -23,7 +23,7 @@ export default function HomePage(props) {
 								</div>
 							: null
 						}
-						{props.postLoading == false ? props.random.map((item) => (
+						{props.postLoading == false ? props.random?.map((item) => (
 							<div className={styles.item} key={item.cardId}>
 								<label className={styles.label}>{item.name}</label>
 								<img className={styles.image} src={item.img} alt={item.name} />

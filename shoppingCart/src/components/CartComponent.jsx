@@ -33,70 +33,95 @@ export default function CartComponent(props) {
 				className={styles.container}>
 				{
 					props.postLoading ?
-					<div>
+					<>
+						<div>
 						<img className={styles.gif} src={gif} alt="" />
 						<div style={{fontSize: '40px'}} className={styles.loading}>LOADING...</div>
-					</div> :
-					<main
-						style={{padding: '50px'}}
-						className={styles.main}>
-						<header>
-							<ArrowBackIcon 
-								style={{ fontSize: '50px'}}
-							/>
-						</header>
-						<div style={{marginTop: '20px'}} className={styles.mainLeft}>
-							<h2>Shopping Bag</h2>
-							<div className={styles.items}>
-								{props.maindata.map(item => (
-									item.cart ?
-										<div style={{position: 'relative'}} key={item.cardId}>
-													<Tilt
-														tiltReverse={true}
-														tiltMaxAngleX={0}
-														tiltMaxAngleY={7}
-														glareEnable={true}
-														glareMaxOpacity={0.5}
-														glareColor='#fffff'
-														glarePosition='all'
-														perspective={1000}
+					</div>
+					</> :
+					<>
+						<main
+							style={{padding: '50px'}}
+							className={styles.main}
+						>
+							<div style={{width: '55%'}} className={styles.mainLeft}>
+								<header style={{marginBottom: '15px'}}>
+									<ArrowBackIcon
+										className={styles.arrow} 
+										style={{ fontSize: '50px'}}
+									/>
+								</header>
+								<h2 style={{marginLeft: '15px'}}>Shopping Bag</h2>
+								<div className={styles.items}>
+									{props.data?.map(item => (
+										item.cart ?
+											<div className={styles.item} style={{position: 'relative'}} key={item.cardId}>
+												<Tilt
+													className={styles.cardContainer}
+													tiltReverse={true}
+													tiltMaxAngleX={0}
+													tiltMaxAngleY={7}
+													glareEnable={true}
+													glareMaxOpacity={0.5}
+													glareColor='#fffff'
+													glarePosition='all'
+													perspective={1000}
 												>
-														<div style={{position: 'relative'}} className={styles.itemContainer}>
+													<div style={{position: 'relative'}} className={styles.itemContainer}>
+														<img className={styles.itemImage} src={item.img} alt="" />
+													</div>
+												</Tilt>
+												<div className={styles.itemInfo}>
+													<h2 className={styles.itemName}>{item.name}</h2>
+														<div style={{ display: 'flex', gap: '10px'}}>
+															<p style={{ color: getColor(item.rarity)}}>Rarity: {item.rarity}</p>
+																{item.rarity == 'Common' ? <img className={styles.rarityImg} src={common} alt="" /> : null}
+																{item.rarity == 'Rare' ? <img className={styles.rarityImg} src={rare} alt="" /> : null}
+																{item.rarity == 'Epic' ? <img className={styles.rarityImg} src={epic} alt="" /> : null}
+																{item.rarity == 'Legendary' ? <img className={styles.rarityImg} src={legendary} alt="" /> : null}
+														</div>
+														<p>Collection: {item.cardSet}</p>
+														<div className={styles.buttons}>
 															<div onClick={() => {item.favorite ? item.favorite = false : item.favorite = true; forceUpdate()}}>
 																<FavoriteIcon 
 																	className={styles.favorite}
-																	style={{cursor: 'pointer', position: 'absolute', width: '25px', right: '15px', top: '15px', color: item.favorite ? 'red' : 'white'}}
+																	style={{fontSize: '35px',cursor: 'pointer', color: item.favorite ? 'red' : 'white'}}
 																/>
 															</div>
 															<div onClick={() => {item.cart ? item.cart = false : item.cart = true; forceUpdate()}}>
 																<ShoppingCartIcon 
 																	className={styles.cart}
-																	style={{cursor: 'pointer', position: 'absolute', width: '25px', right: '15px', top: '50px', color: item.cart ? 'green' : 'white'}}
+																	style={{fontSize: '35px', cursor: 'pointer', color: item.cart ? 'green' : 'white'}}
 																/>
 															</div>
-															<img className={styles.itemImage} src={item.img} alt="" />
-															<div className={styles.itemFooter}>
-																<h2 className={styles.itemName}>{item.name}</h2>
-																<div style={{ display: 'flex', gap: '10px'}}>
-																	<p style={{ color: getColor(item.rarity)}}>Rarity: {item.rarity}</p>
-																		{item.rarity == 'Common' ? <img className={styles.rarityImg} src={common} alt="" /> : null}
-																		{item.rarity == 'Rare' ? <img className={styles.rarityImg} src={rare} alt="" /> : null}
-																		{item.rarity == 'Epic' ? <img className={styles.rarityImg} src={epic} alt="" /> : null}
-																		{item.rarity == 'Legendary' ? <img className={styles.rarityImg} src={legendary} alt="" /> : null}
-																</div>
-																<p>Collection: {item.cardSet}</p>
-															</div>
 														</div>
-													</Tilt>
+												</div>
 											</div>
-										: null
-								))}
+											: null
+									))}
+								</div>
 							</div>
-						</div>
-						<div className={styles.mainRight}>
-
-						</div>
-					</main>
+							<div className={styles.mainRight}>
+								<div className={styles.orderContainer}>
+									<h1>Order summary</h1>
+									<h2>$46.48</h2>
+									<div>
+										<p>Subtotal 3(items)</p>
+										<p>$39.0</p>
+									</div>
+									<div>
+										<p>VAT (20%)</p>
+										<p>$7.8</p>
+									</div>
+									<hr />
+									<div>
+										<h2>Total</h2>
+										<h2>$46.8</h2>
+									</div>
+								</div>
+							</div>
+						</main>
+					</>
 				}
 			</div>
 		</>
