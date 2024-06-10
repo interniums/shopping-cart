@@ -81,6 +81,7 @@
 	border-radius: 15px;
 	padding: 20px 0px;
 	justify-items: center;
+	cursor: pointer;
 }
 
 .itemImage {

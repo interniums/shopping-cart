@@ -7,10 +7,11 @@ import getRandomObjects from "./utils/getRandomObjects"
 import getCollections from "./utils/getCollections"
 import sortData from "./utils/SortData"
 import CartComponent from "./components/CartComponent"
+import { Link, Outlet } from "react-router-dom"
 
 function App() {
 	const {data, loading, error} = useMurlockFetch()
-	const [maindata, setMaindata] = useState()
+	const [maindata, setMainData] = useState(null)
 	const [sortRarity, setSortRarity] = useState(['All'])
 	const [sortCollections, setSortCollections] = useState(['All'])
 	const [sortAttack, setSortAttack] = useState([1, 13])
@@ -20,8 +21,13 @@ function App() {
 	// console.log(sortAttack)
 	// console.log(sortCollections)
 	// console.log(data)
-	// console.log(postLoading)
-	// console.log(maindata)
+	console.log(maindata)
+
+	useEffect(() => {
+		if (data) {
+			setMainData(data)
+		}
+	}, [data])
 
 	const random = useMemo(() => {
 		if (!data) return []
@@ -29,18 +35,32 @@ function App() {
 	}, [data])
 
 	const collections = useMemo(() => {
-		if (!data) return []
-		return getCollections(data)
-	}, [data])
+		if (!maindata) return []
+		return getCollections(maindata)
+	}, [maindata])
 
 	const sortedData = useMemo(() => {
 		if (!data) return []
-		return sortData(data, sortRarity, sortCollections, sortAttack, sortFavorites)
+		return setMainData(sortData(data, sortRarity, sortCollections, sortAttack, sortFavorites))
 	}, [data, sortRarity, sortCollections, sortAttack, sortFavorites])
 
   return (
 		<>
-			{/* <HomePage postLoading={loading} random={random}/> */}
+			<Outlet context={[
+				sortFavorites,
+				setSortFavorites,
+				setSortAttack,
+				sortRarity,
+				setSortRarity,
+				sortCollections,
+				setSortCollections,
+				maindata,
+				setMainData,
+				collections,
+				loading,
+				random,
+			]} />
+			{/* <HomePage loading={loading} random={random}/> */}
 			{/* <ShopPage 
 				sortFavorites={sortFavorites}
 				setSortFavorites={setSortFavorites}
@@ -49,16 +69,18 @@ function App() {
 				setSortRarity={setSortRarity}
 				sortCollections={sortCollections}
 				setSortCollections={setSortCollections}
-				data={sortedData} 
+				data={maindata} 
+				setData={setMainData}
 				collections={collections} 
 				postLoading={loading}
 			/> */}
-			<CartComponent 
+			{/* <CartComponent 
 				sortFavorites={sortFavorites}
 				setSortFavorites={setSortFavorites}
-				data={data}
-				postLoading={loading}
-			/>
+				data={maindata}
+				setData={setMainData}
+				loading={loading}
+			/> */}
 		</>
 	)
 }

@@ -8,6 +8,17 @@ export default function useMurlockFetch() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
+	function filterUniqueNames(objectsArray) {
+		const namesSet = new Set()
+		return objectsArray.filter(obj => {
+			if (!namesSet.has(obj.name)) {
+				namesSet.add(obj.name)
+				return true
+			}
+			return false
+		})
+	}
+
   useEffect(() => {
     const fetchDataForPosts = async () => {
 			const url = 'https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/races/Murloc'
@@ -30,9 +41,12 @@ export default function useMurlockFetch() {
 				const filteredRarity = filteredImg.filter( item => {
 					return 'rarity' in item
 				})
-				let returnArray = filteredRarity.filter( item => item.cardSet !== 'Mercenaries' && item.cardSet !== 'Battlegrounds' && item.name !== 'Murloc Scout')
-
+				const filteredFlavor = filteredRarity.filter( item => {
+					return 'flavor' in item
+				})
+				let returnArray = filteredFlavor.filter( item => item.cardSet !== 'Mercenaries' && item.cardSet !== 'Battlegrounds' && item.name !== 'Murloc Scout')
 				returnArray = returnArray.map(item => ({...item, favorite: false, cart: true}))
+				returnArray = filterUniqueNames(returnArray)
 
         setData(returnArray)
         setError(null)

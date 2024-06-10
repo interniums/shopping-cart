@@ -4,7 +4,6 @@ import RangeSlider from './RangeSlider.jsx'
 import Checkbox from '@mui/material/Checkbox'
 import styles from '../css/ShopPage.module.css'
 import CollectionSelect from './CollectionSelect.jsx'
-import CollectionSelect2 from './CollectionSelect2.jsx'
 
 export default function ShopNav(props) {
 

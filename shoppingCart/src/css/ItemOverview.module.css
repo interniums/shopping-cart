@@ -1,0 +1,49 @@
+.container {
+	padding: 0px 50px 50px 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+}
+
+.main {
+	display: flex;
+	gap: 50px;
+	align-items: center;
+	justify-content: start;
+	text-align: center;
+}
+
+.image {
+	width: 350px;
+}
+
+.cartButton {
+	border: none;
+	background-color: rgba(0, 0, 0, .2);
+	color: rgb(225, 225, 225);
+	padding: 15px 25px;
+	font-size: 20px;
+	font-weight: bold;
+	border-radius: 10px;
+	width: 85%;
+	box-shadow: 1px 1px 5px rgba(0, 0, 0, .7);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.arrow:hover {
+	scale: 115%;
+	cursor: pointer;
+}
+
+.cartButton:active {
+	box-shadow: 1px 1px 8px rgba(100, 100, 100, .1);
+}
+
+.cartButton:hover {
+	scale: 105%;
+}

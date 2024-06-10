@@ -4,7 +4,7 @@ import styles from '../css/CartComponent.module.css'
 import MainHeader from './MainHeader'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import FavoriteIcon from '@mui/icons-material/Favorite'
-import { useReducer } from 'react'
+import { useMemo } from 'react'
 import Tilt from 'react-parallax-tilt'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import getColor from '../utils/getColor'
@@ -13,26 +13,60 @@ import epic from '../assets/epic.webp'
 import legendary from '../assets/legendary.webp'
 import rare from '../assets/rare.webp'
 import gif from '../assets/giphy.gif'
+import getTotal from '../utils/getTotal'
+import getItemsTotal from '../utils/getItemsTotal'
 
 
 export default function CartComponent(props) {
-	const [ignored, forceUpdate] = useReducer(x => x + 1, 0)
 
+	const itemsTotal = useMemo(() => {
+		if (!props.data) return null
+		return getItemsTotal(props.data)
+	}, [props.data])
+
+	const total = useMemo(() => {
+		if (!props.data) return null
+		return getTotal(props.data)
+	}, [props.data])
+
+	const handleFavorite = (name) => {
+		props.setData(prevArr => {
+			return prevArr.map(obj => {
+				if (obj.name === name) {
+					return { ...obj, favorite: obj.favorite ? false : true }
+				}
+				return obj
+			})
+		})
+	}
+
+	const handleCart = (name) => {
+		props.setData(prevArr => {
+			return prevArr.map(obj => {
+				if (obj.name === name) {
+					return { ...obj, cart: false }
+				}
+				return obj
+			})
+		})
+	}
+	
 	return (
 		<>
 			<MainHeader 
 				sortFavorites={props.sortFavorites}
-				setSortFavorites={props.setSortFavorites}	
+				setSortFavorites={props.setSortFavorites}
+				data={props.data}
 			/>
 			<div
 				style={{
-					justifyContent: props.postLoading ? 'center' : 'start',
-					alignItems: props.postLoading ? 'center' : 'start',
-					marginTop: props.postLoading ? '10%' : '0%'
+					justifyContent: props.loading ? 'center' : 'start',
+					alignItems: props.loading ? 'center' : 'start',
+					marginTop: props.loading ? '10%' : '0%'
 				}}
 				className={styles.container}>
 				{
-					props.postLoading ?
+					props.loading ?
 					<>
 						<div>
 						<img className={styles.gif} src={gif} alt="" />
@@ -67,12 +101,13 @@ export default function CartComponent(props) {
 													glarePosition='all'
 													perspective={1000}
 												>
-													<div style={{position: 'relative'}} className={styles.itemContainer}>
+													<div style={{position: 'relative', cursor: 'pointer'}} className={styles.itemContainer}>
 														<img className={styles.itemImage} src={item.img} alt="" />
 													</div>
 												</Tilt>
 												<div className={styles.itemInfo}>
-													<h2 className={styles.itemName}>{item.name}</h2>
+													<div style={{minWidth: '200px'}}>
+														<h2 className={styles.itemName}>{item.name}</h2>
 														<div style={{ display: 'flex', gap: '10px'}}>
 															<p style={{ color: getColor(item.rarity)}}>Rarity: {item.rarity}</p>
 																{item.rarity == 'Common' ? <img className={styles.rarityImg} src={common} alt="" /> : null}
@@ -82,19 +117,23 @@ export default function CartComponent(props) {
 														</div>
 														<p>Collection: {item.cardSet}</p>
 														<div className={styles.buttons}>
-															<div onClick={() => {item.favorite ? item.favorite = false : item.favorite = true; forceUpdate()}}>
+															<div onClick={() => handleFavorite(item.name)}>
 																<FavoriteIcon 
 																	className={styles.favorite}
 																	style={{fontSize: '35px',cursor: 'pointer', color: item.favorite ? 'red' : 'white'}}
 																/>
 															</div>
-															<div onClick={() => {item.cart ? item.cart = false : item.cart = true; forceUpdate()}}>
+															<div onClick={() => handleCart(item.name)}>
 																<ShoppingCartIcon 
 																	className={styles.cart}
 																	style={{fontSize: '35px', cursor: 'pointer', color: item.cart ? 'green' : 'white'}}
 																/>
 															</div>
 														</div>
+													</div>
+													<div className={styles.itemHandle}>
+														<div style={{fontSize: '20px'}}>${item.cost * 8.5 + 3}</div>
+													</div>
 												</div>
 											</div>
 											: null
@@ -104,19 +143,22 @@ export default function CartComponent(props) {
 							<div className={styles.mainRight}>
 								<div className={styles.orderContainer}>
 									<h1>Order summary</h1>
-									<h2>$46.48</h2>
+									<h2>$ {total}</h2>
 									<div>
-										<p>Subtotal 3(items)</p>
-										<p>$39.0</p>
+										<p>Subtotal {itemsTotal}(items)</p>
+										<p>${Math.round(total * 0.8)}</p>
 									</div>
 									<div>
 										<p>VAT (20%)</p>
-										<p>$7.8</p>
+										<p>${Math.round(total * 0.2)}</p>
 									</div>
 									<hr />
-									<div>
+									<div style={{display: 'flex', justifyContent: 'space-between'}}>
 										<h2>Total</h2>
-										<h2>$46.8</h2>
+										<h2>${total}</h2>
+									</div>
+									<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '20px'}}>
+										<button className={styles.button}>Checkout</button>
 									</div>
 								</div>
 							</div>
