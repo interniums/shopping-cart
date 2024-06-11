@@ -6,12 +6,33 @@ import Button from '@mui/material/Button'
 import gif from '../assets/giphy.gif'
 import Tilt from 'react-parallax-tilt'
 import { Link } from "react-router-dom"
+import { useContext } from 'react'
+import { DataContext } from '../App'
 
 export default function HomePage(props) {
+	const {
+		random,
+		sortFavorites,
+		setSortFavorites,
+		setSortAttack,
+		sortRarity,
+		setSortRarity,
+		sortCollections,
+		setSortCollections,
+		maindata,
+		setMainData,
+		collections,
+		loading,
+	} = useContext(DataContext)
 
 	return (
 		<div className={styles.container}>
-			<MainHeader />
+			<MainHeader 
+				loading={loading}
+				sortFavorites={sortFavorites}
+				setSortFavorites={setSortFavorites}
+				data={maindata}
+			/>
 			<main className={styles.main}>
 				<div className={styles.mainContent}>
 					<h1 className={styles.h1}>Welcome to murlocs.</h1>
@@ -21,13 +42,13 @@ export default function HomePage(props) {
 					</Link>
 					<div className={styles.carousel}>
 						{
-							props.loading == true ? <div>
+							loading == true ? <div>
 									<img className={styles.gif} src={gif} alt="" />
 									<div style={{fontSize: '40px'}} className={styles.loading}>LOADING</div>
 								</div>
 							: null
 						}
-						{props.loading == false ? props.random?.map((item) => (
+						{loading == false ? random?.map((item) => (
 							<Tilt 
 								key={item.cardId}
 								tiltReverse={true}

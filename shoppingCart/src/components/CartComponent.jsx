@@ -4,7 +4,7 @@ import styles from '../css/CartComponent.module.css'
 import MainHeader from './MainHeader'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import FavoriteIcon from '@mui/icons-material/Favorite'
-import { useMemo } from 'react'
+import { useContext, useMemo } from 'react'
 import Tilt from 'react-parallax-tilt'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import getColor from '../utils/getColor'
@@ -15,22 +15,37 @@ import rare from '../assets/rare.webp'
 import gif from '../assets/giphy.gif'
 import getTotal from '../utils/getTotal'
 import getItemsTotal from '../utils/getItemsTotal'
-
+import { DataContext } from '../App'
+import { Link } from 'react-router-dom'
 
 export default function CartComponent(props) {
+	const {
+		random,
+		sortFavorites,
+		setSortFavorites,
+		setSortAttack,
+		sortRarity,
+		setSortRarity,
+		sortCollections,
+		setSortCollections,
+		maindata,
+		setMainData,
+		collections,
+		loading,
+	} = useContext(DataContext)
 
 	const itemsTotal = useMemo(() => {
-		if (!props.data) return null
-		return getItemsTotal(props.data)
-	}, [props.data])
+		if (!maindata) return null
+		return getItemsTotal(maindata)
+	}, [maindata])
 
 	const total = useMemo(() => {
-		if (!props.data) return null
-		return getTotal(props.data)
-	}, [props.data])
+		if (!maindata) return null
+		return getTotal(maindata)
+	}, [maindata])
 
 	const handleFavorite = (name) => {
-		props.setData(prevArr => {
+		setMainData(prevArr => {
 			return prevArr.map(obj => {
 				if (obj.name === name) {
 					return { ...obj, favorite: obj.favorite ? false : true }
@@ -41,7 +56,7 @@ export default function CartComponent(props) {
 	}
 
 	const handleCart = (name) => {
-		props.setData(prevArr => {
+		setMainData(prevArr => {
 			return prevArr.map(obj => {
 				if (obj.name === name) {
 					return { ...obj, cart: false }
@@ -50,23 +65,35 @@ export default function CartComponent(props) {
 			})
 		})
 	}
+
+	const chooseColor = (name) => {
+		const object = maindata?.find(item => item.name === name)
+		if (object?.favorite == true) return 'red'
+		if (object?.favorite == true) return 'rgb(225, 225, 225)'
+	}
+
+	const chooseColorCart = (name) => {
+		const object = maindata?.find(item => item.name === name)
+		if (object?.cart == true) return 'green'
+		if (object?.cart == true) return 'rgb(225, 225, 225)'
+	}
 	
 	return (
 		<>
 			<MainHeader 
-				sortFavorites={props.sortFavorites}
-				setSortFavorites={props.setSortFavorites}
-				data={props.data}
+				sortFavorites={sortFavorites}
+				setSortFavorites={setSortFavorites}
+				data={maindata}
 			/>
 			<div
 				style={{
-					justifyContent: props.loading ? 'center' : 'start',
-					alignItems: props.loading ? 'center' : 'start',
-					marginTop: props.loading ? '10%' : '0%'
+					justifyContent: loading ? 'center' : 'start',
+					alignItems: loading ? 'center' : 'start',
+					marginTop: loading ? '10%' : '0%'
 				}}
 				className={styles.container}>
 				{
-					props.loading ?
+					loading ?
 					<>
 						<div>
 						<img className={styles.gif} src={gif} alt="" />
@@ -80,14 +107,16 @@ export default function CartComponent(props) {
 						>
 							<div style={{width: '55%'}} className={styles.mainLeft}>
 								<header style={{marginBottom: '15px'}}>
-									<ArrowBackIcon
-										className={styles.arrow} 
-										style={{ fontSize: '50px'}}
-									/>
+									<Link to='/shop' style={{textDecoration: 'none', color: 'inherit'}}>
+										<ArrowBackIcon
+											className={styles.arrow} 
+											style={{ fontSize: '50px'}}
+										/>
+									</Link>
 								</header>
 								<h2 style={{marginLeft: '15px'}}>Shopping Bag</h2>
 								<div className={styles.items}>
-									{props.data?.map(item => (
+									{maindata?.map(item => (
 										item.cart ?
 											<div className={styles.item} style={{position: 'relative'}} key={item.cardId}>
 												<Tilt
@@ -120,13 +149,13 @@ export default function CartComponent(props) {
 															<div onClick={() => handleFavorite(item.name)}>
 																<FavoriteIcon 
 																	className={styles.favorite}
-																	style={{fontSize: '35px',cursor: 'pointer', color: item.favorite ? 'red' : 'white'}}
+																	style={{fontSize: '35px',cursor: 'pointer', color: chooseColor(item.name)}}
 																/>
 															</div>
 															<div onClick={() => handleCart(item.name)}>
 																<ShoppingCartIcon 
 																	className={styles.cart}
-																	style={{fontSize: '35px', cursor: 'pointer', color: item.cart ? 'green' : 'white'}}
+																	style={{fontSize: '35px', cursor: 'pointer', color: chooseColorCart(item.name)}}
 																/>
 															</div>
 														</div>

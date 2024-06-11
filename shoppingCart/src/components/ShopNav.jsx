@@ -100,7 +100,6 @@ export default function ShopNav(props) {
 				<div className={styles.collectionContainer}>
 					<h2>Collections</h2>
 					<CollectionSelect 
-						postLoading={props.postLoading} 
 						collections={props.collections}
 						sortCollections={props.sortCollections}
 						setSortCollections={props.setSortCollections}	

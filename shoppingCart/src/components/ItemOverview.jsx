@@ -5,6 +5,7 @@ import styles from '../css/ItemOverview.module.css'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import Tilt from 'react-parallax-tilt'
+import { Link } from "react-router-dom"
 
 export default function ItemOverview(props) {
 	const handleCart = (name) => {
@@ -26,7 +27,9 @@ export default function ItemOverview(props) {
 				setSortFavorites={props.setSortFavorites}	
 				data={props.data}
 			/>
-			<header style={{margin: '50px 50px 0px 50px'}}><ArrowBackIcon className={styles.arrow} style={{fontSize: '50px', cursor: 'pointer', marginBottom: '30px'}}/></header>
+			<header style={{margin: '50px 50px 0px 50px'}}>
+				<ArrowBackIcon className={styles.arrow} style={{fontSize: '50px', cursor: 'pointer', marginBottom: '30px'}}/>
+			</header>
 			<div className={styles.container}>
 				<main className={styles.main}>
 					<Tilt

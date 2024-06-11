@@ -1,13 +1,45 @@
 /* eslint-disable no-unused-vars */
-import { cloneElement, useEffect, useMemo, useState } from "react"
-import HomePage from "./components/HomePage"
+import { createContext, useEffect, useMemo, useState } from "react"
+import styles from '../src/css/HomePage.module.css'
 import useMurlockFetch from "./hooks/useMurlockFetch"
 import ShopPage from "./components/ShopPage"
 import getRandomObjects from "./utils/getRandomObjects"
 import getCollections from "./utils/getCollections"
 import sortData from "./utils/SortData"
 import CartComponent from "./components/CartComponent"
-import { Link, Outlet } from "react-router-dom"
+import { Link, Outlet, RouterProvider, createBrowserRouter } from "react-router-dom"
+import MainHeader from "./components/MainHeader"
+import { Button } from "@mui/material"
+import gif from '../src/assets/giphy.gif'
+import Tilt from 'react-parallax-tilt'
+import NotFoundPage from "./components/NotFoundPage"
+import ItemOverview from "./components/ItemOverview"
+import HomePage from "./components/HomePage"
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />,
+		errorElement: <NotFoundPage />,
+	},
+	{
+		path: 'shop',
+		element: <ShopPage />,
+		errorElement: <NotFoundPage />,
+	},
+	{
+		path: 'cart',
+		element: <CartComponent />,
+		errorElement: <NotFoundPage />,
+	},
+	{
+		path: 'itemOverview',
+		element: <ItemOverview />,
+		errorElement: <NotFoundPage />,
+	}
+])
+
+export const DataContext = createContext(null)
 
 function App() {
 	const {data, loading, error} = useMurlockFetch()
@@ -21,7 +53,7 @@ function App() {
 	// console.log(sortAttack)
 	// console.log(sortCollections)
 	// console.log(data)
-	console.log(maindata)
+	// console.log(maindata)
 
 	useEffect(() => {
 		if (data) {
@@ -41,12 +73,13 @@ function App() {
 
 	const sortedData = useMemo(() => {
 		if (!data) return []
-		return setMainData(sortData(data, sortRarity, sortCollections, sortAttack, sortFavorites))
+		return sortData(data, sortRarity, sortCollections, sortAttack, sortFavorites)
 	}, [data, sortRarity, sortCollections, sortAttack, sortFavorites])
 
   return (
 		<>
-			<Outlet context={[
+			<DataContext.Provider value={
+				{random,
 				sortFavorites,
 				setSortFavorites,
 				setSortAttack,
@@ -58,29 +91,10 @@ function App() {
 				setMainData,
 				collections,
 				loading,
-				random,
-			]} />
-			{/* <HomePage loading={loading} random={random}/> */}
-			{/* <ShopPage 
-				sortFavorites={sortFavorites}
-				setSortFavorites={setSortFavorites}
-				setSortAttack={setSortAttack}
-				sortRarity={sortRarity}
-				setSortRarity={setSortRarity}
-				sortCollections={sortCollections}
-				setSortCollections={setSortCollections}
-				data={maindata} 
-				setData={setMainData}
-				collections={collections} 
-				postLoading={loading}
-			/> */}
-			{/* <CartComponent 
-				sortFavorites={sortFavorites}
-				setSortFavorites={setSortFavorites}
-				data={maindata}
-				setData={setMainData}
-				loading={loading}
-			/> */}
+				sortedData}
+			}>
+				<RouterProvider router={router} />
+			</DataContext.Provider>
 		</>
 	)
 }
