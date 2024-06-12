@@ -17,6 +17,9 @@ export default function ItemOverview() {
 		setMainData,
 		maindata,
 		setShowItem,
+		setSortAttack,
+		setSortRarity,
+		setSortCollections
 	} = useContext(DataContext)
 
 	const [childProps, setChildProps] = useState({
@@ -47,6 +50,13 @@ export default function ItemOverview() {
 		})
 	}
 
+	const resetStates = () => {
+		setSortFavorites(false)
+		setSortAttack([1, 13])
+		setSortRarity(['All'])
+		setSortCollections(['All'])
+	}
+
 	return (
 		<>
 			<MainHeader 
@@ -55,7 +65,7 @@ export default function ItemOverview() {
 				maindata={maindata}
 			/>
 			<header style={{margin: '50px 50px 0px 50px'}}>
-				<Link style={{textDecoration: 'none', color: 'inherit'}} to='/shop'>
+				<Link onClick={() => resetStates()} style={{textDecoration: 'none', color: 'inherit'}} to='/shop'>
 					<ArrowBackIcon className={styles.arrow} style={{fontSize: '50px', cursor: 'pointer', marginBottom: '30px'}}/>
 				</Link>
 			</header>
@@ -92,7 +102,17 @@ export default function ItemOverview() {
 								to='/cart'
 								style={{textDecoration: 'none', color: 'inherit', width: '85%', }}
 							>
-								<button style={{width: '100%'}} onClick={() => handleCart()} className={styles.cartButton}>$ Buy Now</button>
+								<button style={{width: '100%'}} onClick={() =>{
+									setMainData(prevArr => {
+										return prevArr.map(obj => {
+											if (obj.name === childProps.name) {
+												return { ...obj, cart: true }
+											}
+											return obj
+										})
+									})}} 
+									className={styles.cartButton}
+								>$ Buy Now</button>
 							</Link>
 						</div>
 					</div>

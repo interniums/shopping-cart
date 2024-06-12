@@ -86,7 +86,7 @@
 	justify-content: center;
 	background-color: rgba(0, 0, 0, .2);
 	border-radius: 15px;
-	padding: 20px 0px;
+	padding: 20px 10px;
 	justify-items: center;
 	cursor: pointer;
 }
@@ -106,4 +106,76 @@
 
 .cart:hover {
 	scale: 115%;
+}
+
+.collectionSelect {
+	width: 200px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.itemLink {
+	display: grid;
+	align-items: center;
+	justify-items: center;
+}
+
+@media (max-width: 1279px) {
+	.nav {
+		margin-top: 35px;
+	}
+
+	.rarityh2 {
+		font-size: 20px;
+	}
+
+	.rarityOptions {
+		font-size: 15px;
+	}
+
+	.attackh2 {
+		font-size: 20px;
+	}
+
+	.collectionsp {
+		font-size: 20px;
+	}
+
+	.collectionSelect {
+		width: 180px;
+	}
+
+	.gif {
+		width: 220px;
+		height: 220px;
+	}
+
+	.loading {
+		font-size: 32px;
+	}
+
+	.h3 {
+		font-size: 15px;
+	}
+
+	.itemContainer {
+		padding: 10px 10px;
+	}
+
+	.itemImage {
+		width: 130px;
+	}
+
+	.itemName {
+		font-size: 17px;
+	}
+
+	.rarityp {
+		font-size: 14px;
+	}
+
+	.rarityImg {
+		width: 15px;
+	}
 }

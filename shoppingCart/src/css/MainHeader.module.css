@@ -149,3 +149,41 @@
 .dropText {
 	font-size: 20px;
 }
+
+@media (max-width: 1279px) {
+	.h1 {
+		font-size: 26px;
+	}
+
+	.p {
+		font-size: 15px;
+		margin-top: 10px;
+	}
+
+	.input {
+		padding: 10px 13px 10px 40px;
+		font-size: 15px;
+	}
+
+	.input::placeholder {
+		font-size: 15px;
+	}
+
+	.headerCount {
+		font-size: 14px;
+	}
+
+	.dropMenu {
+		padding-top: 35.5px;
+		width: 250px;
+		max-height: 295px;
+	}
+
+	.dropItem {
+		padding: 10px;
+	}
+
+	.searchContainer {
+		width: 250px;
+	}
+}

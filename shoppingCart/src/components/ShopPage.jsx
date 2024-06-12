@@ -91,9 +91,9 @@ export default function ShopPage() {
 			>
 				{
 					loading ?
-					<div>
+					<div style={{display: 'grid', alignItems: 'end	', justifyContent: 'center', width: '100%', height: '400px', gridTemplateRows: '5fr 1fr'}}>
 						<img className={styles.gif} src={gif} alt="" />
-						<div style={{fontSize: '40px'}} className={styles.loading}>LOADING...</div>
+						<div className={styles.loading}>LOADING...</div>
 					</div> : 
 					<>
 						<ShopNav 
@@ -105,7 +105,7 @@ export default function ShopPage() {
 							setSortAttack={setSortAttack}
 						/>
 						<main className={styles.main}>
-							<h3 style={{ marginLeft: '60px'}}>{sortFavorites ? 'Favorites' : 'Cards'}({!sortFavorites ? sortedData?.length : maindata.filter(item => item.favorite).length})</h3>
+							<h3 className={styles.h3} style={{ marginLeft: '60px'}}>{sortFavorites ? 'Favorites' : 'Cards'}({!sortFavorites ? sortedData?.length : maindata.filter(item => item.favorite).length})</h3>
 							<div className={styles.itemsContainer}>
 								{
 									sortFavorites ? 
@@ -128,6 +128,7 @@ export default function ShopPage() {
 													>
 														<div  style={{position: 'relative'}} className={styles.itemContainer}>
 															<Link
+																className={styles.itemLink}
 																onClick={() => setItemOverview(item.name)}
 																to={`/itemOverview`}
 																style={{
@@ -153,13 +154,13 @@ export default function ShopPage() {
 																<div className={styles.itemFooter}>
 																	<h2 className={styles.itemName}>{item.name}</h2>
 																	<div style={{ display: 'flex', gap: '10px'}}>
-																		<p style={{ color: getColor(item.rarity)}}>Rarity: {item.rarity}</p>
+																		<p className={styles.rarityp} style={{ color: getColor(item.rarity)}}>Rarity: {item.rarity}</p>
 																			{item.rarity == 'Common' ? <img className={styles.rarityImg} src={common} alt="" /> : null}
 																			{item.rarity == 'Rare' ? <img className={styles.rarityImg} src={rare} alt="" /> : null}
 																			{item.rarity == 'Epic' ? <img className={styles.rarityImg} src={epic} alt="" /> : null}
 																			{item.rarity == 'Legendary' ? <img className={styles.rarityImg} src={legendary} alt="" /> : null}
 																	</div>
-																	<p>Collection: {item.cardSet}</p>
+																	<p className={styles.rarityp}>Collection: {item.cardSet}</p>
 																</div>
 															</Link>
 														</div>

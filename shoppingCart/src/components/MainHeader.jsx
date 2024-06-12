@@ -63,7 +63,7 @@ export default function MainHeader(props) {
 				</div>
 				<div className={styles.rightSection}>
 					<div className={styles.searchContainer}>
-						<SearchIcon className={styles.search} fontSize='large'/>
+						<SearchIcon id='headerSearch' className={styles.search} fontSize='large'/>
 						<input onClick={() => setShowSearch(true)} onChange={(event) => {setSearch(event.target.value); () => setShowSearch(true)}} placeholder='Search' type="text" className={styles.input}/>
 						{
 							showSearch ? 
@@ -73,7 +73,7 @@ export default function MainHeader(props) {
 											<Link 
 												key={item.name}
 												style={{textDecoration: 'none', color: 'inherit'}}
-												onClick={() => setItemOverview(item.name)}
+												onClick={() => {setItemOverview(item.name); resetStates()}}
 												to={`/itemOverview`}
 											>
 												<div className={styles.dropItem}>
@@ -90,17 +90,18 @@ export default function MainHeader(props) {
 					<div className={styles.favContainer}>
 						<Link to='/shop' className='link'>
 							<div style={{display: 'flex', gap: '10px', alignItems: 'center'}} onClick={() => {props.sortFavorites ? props.setSortFavorites(false) : props.setSortFavorites(true)}}>
-								<FavoriteIcon 
+								<FavoriteIcon
+									id='headerFavorite' 
 									className={styles.icons}
 									fontSize='large'
-									style={{color: 'white'}}	
+									style={{color: props.sortFavorites ? 'red' : 'white'}}	
 								/>
-									<div>{favorites}</div>
+									<div className='headerCount'>{favorites}</div>
 							</div>
 						</Link>
 						<div style={{display: 'flex', gap: '10px', alignItems: 'center'}}>
-							<Link className='link' to='/cart'><ShoppingCartIcon className={styles.icons} fontSize='large'/></Link>
-							<div>{cart}</div>
+							<Link className='link' to='/cart'><ShoppingCartIcon id='headerCart'  className={styles.icons} fontSize='large'/></Link>
+							<div className={styles.headerCount}>{cart}</div>
 						</div>
 					</div>
 				</div>

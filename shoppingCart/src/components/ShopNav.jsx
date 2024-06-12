@@ -90,7 +90,7 @@ export default function ShopNav(props) {
 				</div>
 			</div>
 			<div className={styles.attackContainer}>
-					<h2>Attack</h2>
+					<h2 className={styles.attackh2}>Attack</h2>
 					<div className={styles.attackOptions}>
 						<RangeSlider 
 							setSortAttack={props.setSortAttack}
@@ -98,12 +98,14 @@ export default function ShopNav(props) {
 					</div>
 				</div>
 				<div className={styles.collectionContainer}>
-					<h2>Collections</h2>
-					<CollectionSelect 
-						collections={props.collections}
-						sortCollections={props.sortCollections}
-						setSortCollections={props.setSortCollections}	
-					/>
+					<h2 className={styles.collectionsp}>Collections</h2>
+					<div className={styles.collectionSelect}>
+						<CollectionSelect 
+							collections={props.collections}
+							sortCollections={props.sortCollections}
+							setSortCollections={props.setSortCollections}	
+						/>
+					</div>
 				</div>
 		</nav>
 	)

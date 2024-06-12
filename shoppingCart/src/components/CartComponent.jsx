@@ -25,6 +25,9 @@ export default function CartComponent(props) {
 		maindata,
 		setMainData,
 		loading,
+		setSortAttack,
+		setSortRarity,
+		setSortCollections
 	} = useContext(DataContext)
 
 	const itemsTotal = useMemo(() => {
@@ -70,6 +73,13 @@ export default function CartComponent(props) {
 		if (object?.cart == true) return 'green'
 		if (object?.cart == true) return 'rgb(225, 225, 225)'
 	}
+
+	const resetStates = () => {
+		setSortFavorites(false)
+		setSortAttack([1, 13])
+		setSortRarity(['All'])
+		setSortCollections(['All'])
+	}
 	
 	return (
 		<>
@@ -97,14 +107,14 @@ export default function CartComponent(props) {
 						>
 							<div style={{width: '55%'}} className={styles.mainLeft}>
 								<header style={{marginBottom: '15px'}}>
-									<Link to='/shop' style={{textDecoration: 'none', color: 'inherit'}}>
+									<Link onClick={() => resetStates()} to='/shop' style={{textDecoration: 'none', color: 'inherit'}}>
 										<ArrowBackIcon
 											className={styles.arrow} 
 											style={{ fontSize: '50px'}}
 										/>
 									</Link>
 								</header>
-								<h2 style={{marginLeft: '15px'}}>Shopping Bag</h2>
+								<h2 style={{marginLeft: '15px'}}>Shopping Bag({maindata.filter(item => item.cart).length})</h2>
 								<div className={styles.items}>
 									{maindata?.map(item => (
 										item.cart ?

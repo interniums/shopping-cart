@@ -81,6 +81,7 @@
 .loading {
 	text-align: center;
 	margin-right: 20px;
+	font-size: 40px;
 }
 
 .gif {
@@ -89,4 +90,40 @@
 	width: 280px;
 	height: 280px;
 	object-fit: cover;
+}
+
+@media (max-width: 1279px) {
+	.gif {
+		width: 220px;
+		height: 220px;
+	}
+
+	.loading {
+		font-size: 32px;
+	}
+
+	.h1 {
+		font-size: 26px;
+	}
+
+	.p {
+		font-size: 14.3px;
+	}
+
+	.mainContent {
+		gap: 32.5px;
+	}
+
+	.label {
+		font-size: 14px;
+	}
+
+	.image {
+		width: 150px;
+		height: auto;
+	}
+
+	.item {
+		padding: 6px 12px;
+	}
 }

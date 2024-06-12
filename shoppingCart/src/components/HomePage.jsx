@@ -41,7 +41,7 @@ export default function HomePage() {
 							loading ? 
 								<div>
 									<img className={styles.gif} src={gif} alt="" />
-									<div style={{fontSize: '40px'}} className={styles.loading}>LOADING</div>
+									<div className={styles.loading}>LOADING</div>
 								</div>
 							: random?.map((item) => (
 							<Tilt 
