@@ -1,17 +1,12 @@
 /* eslint-disable no-unused-vars */
 import { createContext, useEffect, useMemo, useState } from "react"
-import styles from '../src/css/HomePage.module.css'
 import useMurlockFetch from "./hooks/useMurlockFetch"
 import ShopPage from "./components/ShopPage"
 import getRandomObjects from "./utils/getRandomObjects"
 import getCollections from "./utils/getCollections"
 import sortData from "./utils/SortData"
 import CartComponent from "./components/CartComponent"
-import { Link, Outlet, RouterProvider, createBrowserRouter } from "react-router-dom"
-import MainHeader from "./components/MainHeader"
-import { Button } from "@mui/material"
-import gif from '../src/assets/giphy.gif'
-import Tilt from 'react-parallax-tilt'
+import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import NotFoundPage from "./components/NotFoundPage"
 import ItemOverview from "./components/ItemOverview"
 import HomePage from "./components/HomePage"
@@ -33,9 +28,8 @@ const router = createBrowserRouter([
 		errorElement: <NotFoundPage />,
 	},
 	{
-		path: 'itemOverview',
-		element: <ItemOverview />,
-		errorElement: <NotFoundPage />,
+		path: 'itemOverview/',
+		element: <ItemOverview />
 	}
 ])
 
@@ -48,12 +42,7 @@ function App() {
 	const [sortCollections, setSortCollections] = useState(['All'])
 	const [sortAttack, setSortAttack] = useState([1, 13])
 	const [sortFavorites, setSortFavorites] = useState(false)
-	// console.log(sortFavorites)
-	// console.log(sortRarity)
-	// console.log(sortAttack)
-	// console.log(sortCollections)
-	// console.log(data)
-	// console.log(maindata)
+	const [itemOverview, setItemOverview] = useState(null)
 
 	useEffect(() => {
 		if (data) {
@@ -80,6 +69,8 @@ function App() {
 		<>
 			<DataContext.Provider value={
 				{random,
+				itemOverview,
+				setItemOverview,
 				sortFavorites,
 				setSortFavorites,
 				setSortAttack,

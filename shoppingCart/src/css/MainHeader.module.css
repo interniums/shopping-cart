@@ -77,12 +77,13 @@
 	position: absolute;
 	left: 10px;
 	pointer-events: none;
+	z-index: 4;
 }
 
 .input {
 	width: 100%;
 	outline: none;
-	background-color: rgba(105, 125, 145, .5);
+	background-color: rgb(66, 100, 134);
 	color: rgba(225, 225, 225, 1);
 	font-size: 20px;
 	font-weight: bold;
@@ -91,6 +92,7 @@
 	border: none;
 	padding: 13px 20px 13px 50px;
 	border-radius: 25px;
+	z-index: 3;
 }
 
 .input::placeholder {
@@ -98,7 +100,7 @@
 }
 
 .input:hover {
-	background-color:  rgba(105, 125, 145, 1);
+	background-color:  rgb(73, 105, 141);
 }
 
 .icons {
@@ -107,4 +109,43 @@
 
 .icons:hover {
 	transform: scale(110%);
+}
+
+.dropMenu {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-color: rgb(66, 100, 134);
+	width: 300px;
+	border-radius: 25px;
+	z-index: 1;
+	padding-top: 49px;
+	height: max-content;
+	max-height: 350px;
+	overflow: auto;
+}
+
+.dropMenu::-webkit-scrollbar {
+	margin-top: 49px;
+	width: 0px;
+}
+
+.dropItem {
+	display: flex;
+	align-items: center;
+	padding: 15px;
+	border-radius: 25px;
+}
+
+.dropItem:hover {
+	background-color:  rgb(73, 105, 141);
+	cursor: pointer;
+}
+
+.dropImage {
+	width: 50px;
+}
+
+.dropText {
+	font-size: 20px;
 }

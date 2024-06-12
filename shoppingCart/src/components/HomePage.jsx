@@ -9,20 +9,14 @@ import { Link } from "react-router-dom"
 import { useContext } from 'react'
 import { DataContext } from '../App'
 
-export default function HomePage(props) {
+export default function HomePage() {
 	const {
 		random,
 		sortFavorites,
 		setSortFavorites,
-		setSortAttack,
-		sortRarity,
-		setSortRarity,
-		sortCollections,
-		setSortCollections,
 		maindata,
-		setMainData,
-		collections,
 		loading,
+		setItemOverview
 	} = useContext(DataContext)
 
 	return (
@@ -31,24 +25,25 @@ export default function HomePage(props) {
 				loading={loading}
 				sortFavorites={sortFavorites}
 				setSortFavorites={setSortFavorites}
-				data={maindata}
+				maindata={maindata}
 			/>
 			<main className={styles.main}>
 				<div className={styles.mainContent}>
 					<h1 className={styles.h1}>Welcome to murlocs.</h1>
-					<p className={styles.p}>Discover our selection of fresh murlocs, bursting with flavor and vitality. Delivered straight from the heartstone to your table.</p>
+					<p className={styles.p}>
+						Discover our selection of fresh murlocs, bursting with flavor and vitality. Delivered straight from the heartstone to your table.
+					</p>
 					<Link to='shop' className='link' >
 						<Button id='shop' variant="outlined">Shop now</Button>
 					</Link>
 					<div className={styles.carousel}>
 						{
-							loading == true ? <div>
+							loading ? 
+								<div>
 									<img className={styles.gif} src={gif} alt="" />
 									<div style={{fontSize: '40px'}} className={styles.loading}>LOADING</div>
 								</div>
-							: null
-						}
-						{loading == false ? random?.map((item) => (
+							: random?.map((item) => (
 							<Tilt 
 								key={item.cardId}
 								tiltReverse={true}
@@ -60,12 +55,18 @@ export default function HomePage(props) {
 								glarePosition='all'
 								perspective={1000}
 							>
-								<div className={styles.item}>
-									<label className={styles.label}>{item.name}</label>
-									<img className={styles.image} src={item.img} alt={item.name} />
-								</div>
-							</Tilt>
-						)): null}
+								<Link 
+									to='/itemOverview'
+									onClick={() => setItemOverview(item.name)}
+									style={{textDecoration: 'none', color: 'inherit'}}
+								>
+									<div className={styles.item}>
+										<label className={styles.label}>{item.name}</label>
+										<img className={styles.image} src={item.img} alt={item.name} />
+									</div>
+								</Link>
+							</Tilt>))
+						}
 					</div>
 					<div className={styles.ulContainer}>
 						<ul className={styles.ul}>

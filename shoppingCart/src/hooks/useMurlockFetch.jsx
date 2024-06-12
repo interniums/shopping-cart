@@ -45,7 +45,7 @@ export default function useMurlockFetch() {
 					return 'flavor' in item
 				})
 				let returnArray = filteredFlavor.filter( item => item.cardSet !== 'Mercenaries' && item.cardSet !== 'Battlegrounds' && item.name !== 'Murloc Scout')
-				returnArray = returnArray.map(item => ({...item, favorite: false, cart: true}))
+				returnArray = returnArray.map(item => ({...item, favorite: false, cart: false}))
 				returnArray = filterUniqueNames(returnArray)
 
         setData(returnArray)

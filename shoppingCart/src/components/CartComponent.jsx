@@ -20,17 +20,10 @@ import { Link } from 'react-router-dom'
 
 export default function CartComponent(props) {
 	const {
-		random,
 		sortFavorites,
 		setSortFavorites,
-		setSortAttack,
-		sortRarity,
-		setSortRarity,
-		sortCollections,
-		setSortCollections,
 		maindata,
 		setMainData,
-		collections,
 		loading,
 	} = useContext(DataContext)
 
@@ -81,25 +74,22 @@ export default function CartComponent(props) {
 	return (
 		<>
 			<MainHeader 
+				loading={loading}
 				sortFavorites={sortFavorites}
 				setSortFavorites={setSortFavorites}
-				data={maindata}
+				maindata={maindata}
 			/>
-			<div
-				style={{
+			<div style={{
 					justifyContent: loading ? 'center' : 'start',
 					alignItems: loading ? 'center' : 'start',
 					marginTop: loading ? '10%' : '0%'
-				}}
-				className={styles.container}>
+				}} className={styles.container}>
 				{
 					loading ?
-					<>
 						<div>
-						<img className={styles.gif} src={gif} alt="" />
-						<div style={{fontSize: '40px'}} className={styles.loading}>LOADING...</div>
-					</div>
-					</> :
+							<img className={styles.gif} src={gif} alt="" />
+							<div style={{fontSize: '40px'}} className={styles.loading}>LOADING...</div>
+						</div> :
 					<>
 						<main
 							style={{padding: '50px'}}
