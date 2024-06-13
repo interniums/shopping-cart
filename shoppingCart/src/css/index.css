@@ -33,8 +33,41 @@
 	text-decoration: none;
 	appearance: none;
 	color: inherit;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+}
+
+#arrow1, #arrow2 {
+	font-size: 40px;
+	position: absolute;
+	margin-left: 15px;
 }
 
 .attackSlider  {
 	width: 180px;
+}
+
+#cartArrow, #itemArrow {
+	font-size: 50px;
+}
+
+#itemArrow {
+	margin-bottom: 30px;
+}
+
+#cartCart, #cartFavorite {
+	font-size: 35px;
+}
+
+#shopFavoriteItem {
+	right: 15px;
+	top: 15px;
+	font-size: 25px;
+}
+
+#shopCartItem {
+	top: 50px;
+	right: 15px;
+	font-size: 25px;
 }

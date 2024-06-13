@@ -98,23 +98,22 @@ export default function CartComponent(props) {
 					loading ?
 						<div>
 							<img className={styles.gif} src={gif} alt="" />
-							<div style={{fontSize: '40px'}} className={styles.loading}>LOADING...</div>
+							<div className={styles.loading}>LOADING...</div>
 						</div> :
 					<>
 						<main
-							style={{padding: '50px'}}
 							className={styles.main}
 						>
-							<div style={{width: '55%'}} className={styles.mainLeft}>
-								<header style={{marginBottom: '15px'}}>
+							<div className={styles.mainLeft}>
+								<header className={styles.header}>
 									<Link onClick={() => resetStates()} to='/shop' style={{textDecoration: 'none', color: 'inherit'}}>
 										<ArrowBackIcon
 											className={styles.arrow} 
-											style={{ fontSize: '50px'}}
+											id='cartArrow'
 										/>
 									</Link>
 								</header>
-								<h2 style={{marginLeft: '15px'}}>Shopping Bag({maindata.filter(item => item.cart).length})</h2>
+								<h2 className={styles.carth2} style={{marginLeft: '15px'}}>Shopping Bag({maindata.filter(item => item.cart).length})</h2>
 								<div className={styles.items}>
 									{maindata?.map(item => (
 										item.cart ?
@@ -138,30 +137,32 @@ export default function CartComponent(props) {
 													<div style={{minWidth: '200px'}}>
 														<h2 className={styles.itemName}>{item.name}</h2>
 														<div style={{ display: 'flex', gap: '10px'}}>
-															<p style={{ color: getColor(item.rarity)}}>Rarity: {item.rarity}</p>
+															<p className={styles.cartp} style={{ color: getColor(item.rarity)}}>Rarity: {item.rarity}</p>
 																{item.rarity == 'Common' ? <img className={styles.rarityImg} src={common} alt="" /> : null}
 																{item.rarity == 'Rare' ? <img className={styles.rarityImg} src={rare} alt="" /> : null}
 																{item.rarity == 'Epic' ? <img className={styles.rarityImg} src={epic} alt="" /> : null}
 																{item.rarity == 'Legendary' ? <img className={styles.rarityImg} src={legendary} alt="" /> : null}
 														</div>
-														<p>Collection: {item.cardSet}</p>
+														<p className={styles.cartp}>Collection: {item.cardSet}</p>
 														<div className={styles.buttons}>
 															<div onClick={() => handleFavorite(item.name)}>
 																<FavoriteIcon 
 																	className={styles.favorite}
-																	style={{fontSize: '35px',cursor: 'pointer', color: chooseColor(item.name)}}
+																	style={{cursor: 'pointer', color: chooseColor(item.name)}}
+																	id='cartFavorite'
 																/>
 															</div>
 															<div onClick={() => handleCart(item.name)}>
 																<ShoppingCartIcon 
+																	id='cartCart'
 																	className={styles.cart}
-																	style={{fontSize: '35px', cursor: 'pointer', color: chooseColorCart(item.name)}}
+																	style={{cursor: 'pointer', color: chooseColorCart(item.name)}}
 																/>
 															</div>
 														</div>
 													</div>
 													<div className={styles.itemHandle}>
-														<div style={{fontSize: '20px'}}>${item.cost * 8.5 + 3}</div>
+														<div className={styles.price}>${item.cost * 8.5 + 3}</div>
 													</div>
 												</div>
 											</div>
@@ -171,22 +172,22 @@ export default function CartComponent(props) {
 							</div>
 							<div className={styles.mainRight}>
 								<div className={styles.orderContainer}>
-									<h1>Order summary</h1>
-									<h2>$ {total}</h2>
+									<h1 className={styles.carth1}>Order summary</h1>
+									<h2 className={styles.carth2}>$ {total}</h2>
 									<div>
-										<p>Subtotal {itemsTotal}(items)</p>
-										<p>${Math.round(total * 0.8)}</p>
+										<p className={styles.cartp}>Subtotal {itemsTotal}(items)</p>
+										<p className={styles.cartp}>${Math.round(total * 0.8)}</p>
 									</div>
 									<div>
-										<p>VAT (20%)</p>
-										<p>${Math.round(total * 0.2)}</p>
+										<p className={styles.cartp}>VAT (20%)</p>
+										<p className={styles.cartp}>${Math.round(total * 0.2)}</p>
 									</div>
 									<hr />
 									<div style={{display: 'flex', justifyContent: 'space-between'}}>
-										<h2>Total</h2>
-										<h2>${total}</h2>
+										<h2 className={styles.carth2}>Total</h2>
+										<h2 className={styles.carth2}>${total}</h2>
 									</div>
-									<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '20px'}}>
+									<div className={styles.buttonContainer} style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 										<button className={styles.button}>Checkout</button>
 									</div>
 								</div>

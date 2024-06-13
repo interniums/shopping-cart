@@ -44,7 +44,7 @@ export default function CollectionSelect(props) {
 
   return (
     <div>
-      <FormControl sx={{ 
+      <FormControl id='collectionSelectContainer' sx={{ 
 				m: 1, 
 				width: 180,
 				color: 'white',
@@ -90,7 +90,7 @@ export default function CollectionSelect(props) {
           renderValue={(selected) => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
               {selected.map((value) => (
-                <Chip key={value} label={value} />
+                <Chip id='chip' key={value} label={value} />
               ))}
             </Box>
           )}

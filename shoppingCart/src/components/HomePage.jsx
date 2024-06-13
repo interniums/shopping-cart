@@ -68,15 +68,6 @@ export default function HomePage() {
 							</Tilt>))
 						}
 					</div>
-					<div className={styles.ulContainer}>
-						<ul className={styles.ul}>
-							<li className={styles.li}></li>
-							<li className={styles.li}></li>
-							<li className={styles.li}></li>
-							<li className={styles.li}></li>
-							<li className={styles.li}></li>
-						</ul>
-					</div>
 				</div>
 			</main>
 		</div>

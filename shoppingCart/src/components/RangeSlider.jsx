@@ -66,6 +66,7 @@ export default function RangeSlider(props) {
 					value={value}
 					onChange={handleChange}
 					getAriaValueText={valuetext}
+					id='sliderAttack'
 				/>
 			</Box>
 		</div>

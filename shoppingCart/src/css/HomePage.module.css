@@ -92,7 +92,16 @@
 	object-fit: cover;
 }
 
-@media (max-width: 1279px) {
+.carousel {
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+@media (max-width: 1350px) {
+	.main {
+		padding: 10px 30px;
+	}
+
 	.gif {
 		width: 220px;
 		height: 220px;
@@ -103,23 +112,127 @@
 	}
 
 	.h1 {
-		font-size: 26px;
+		font-size: 42px;
 	}
 
 	.p {
-		font-size: 14.3px;
+		font-size: 25px;
 	}
 
 	.mainContent {
-		gap: 32.5px;
+		gap: 28px;
 	}
 
 	.label {
-		font-size: 14px;
+		font-size: 20px;
 	}
 
 	.image {
-		width: 150px;
+		width: 200px;
+		height: auto;
+	}
+
+	.item {
+		padding: 6px 12px;
+	}
+}
+
+@media (max-width: 900px) {
+	.main {
+		padding: 10px 30px;
+		display: flex;
+		align-items: center;
+	}
+
+	.carousel {
+		display: none;
+		grid-template-columns: 1fr;
+		overflow: auto;
+		height: 450px;
+	}
+
+	.gif {
+		width: 220px;
+		height: 220px;
+	}
+
+	.loading {
+		font-size: 32px;
+	}
+
+	.h1 {
+		font-size: 40px;
+		margin-right: 0px;
+	}
+
+	.p {
+		font-size: 20px;
+		margin-right: 0px;
+		width: 400px;
+	}
+
+	.mainContent {
+		gap: 28px;
+	}
+
+	.label {
+		font-size: 20px;
+	}
+
+	.image {
+		width: 180px;
+		height: auto;
+	}
+
+	.item {
+		padding: 6px 12px;
+	}
+}
+
+@media (max-height: 880px)  and (max-width: 899px)  {
+	.main {
+		padding: 10px 30px;
+		display: flex;
+		align-items: center;
+	}
+
+	.carousel {
+		display: none;
+		grid-template-columns: 1fr;
+		overflow: auto;
+		height: 450px;
+	}
+
+	.gif {
+		width: 220px;
+		height: 220px;
+	}
+
+	.loading {
+		font-size: 32px;
+	}
+
+	.h1 {
+		font-size: 32px;
+		margin-right: 0px;
+	}
+
+	.p {
+		font-size: 19px;
+		margin-right: 0px;
+		width: 300px;
+	}
+
+	.mainContent {
+		gap: 28px;
+	}
+
+	.label {
+		font-size: 20px;
+	}
+
+	.image {
+		width: 180px;
 		height: auto;
 	}
 

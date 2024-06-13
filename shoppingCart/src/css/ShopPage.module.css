@@ -6,7 +6,7 @@
 }
 
 .nav {
-	margin-top: 50px;
+	margin-top: 60px;
 	padding-left: 30px;
 	width: 250px;
 	margin-right: 40px;
@@ -15,6 +15,11 @@
 .rarityContainer {
 	display: grid;
 	gap: 15px;
+}
+
+.shopNavArrow {
+	margin-right: 30px;
+	cursor: pointer;
 }
 
 .rarityh2 {
@@ -30,7 +35,6 @@
 .attackContainer {
 	display: grid;
 	gap: 35px;
-	width: max-content;
 	margin-top: 20px;
 }
 
@@ -40,7 +44,7 @@
 }
 
 .main {
-	margin-top: 50px;
+	margin-top: 60px;
 	width: 100%;
 }
 
@@ -52,6 +56,7 @@
 .collectionContainer {
 	display: grid;
 	gap: 15px;
+	margin-top: 20px;
 }
 
 .loading {
@@ -121,61 +126,321 @@
 	justify-items: center;
 }
 
-@media (max-width: 1279px) {
+@media (max-width: 1350px) {
 	.nav {
-		margin-top: 35px;
+		margin-top: 60px;
+		margin-right: 5px;
+	}
+
+	.main {
+		margin-top: 60px;
 	}
 
 	.rarityh2 {
-		font-size: 20px;
-	}
-
-	.rarityOptions {
-		font-size: 15px;
-	}
-
-	.attackh2 {
-		font-size: 20px;
-	}
-
-	.collectionsp {
-		font-size: 20px;
-	}
-
-	.collectionSelect {
-		width: 180px;
-	}
-
-	.gif {
-		width: 220px;
-		height: 220px;
-	}
-
-	.loading {
-		font-size: 32px;
-	}
-
-	.h3 {
-		font-size: 15px;
-	}
-
-	.itemContainer {
-		padding: 10px 10px;
-	}
-
-	.itemImage {
-		width: 130px;
-	}
-
-	.itemName {
 		font-size: 17px;
 	}
 
+	.rarityOptions {
+		font-size: 12px;
+	}
+
+	.attackh2 {
+		font-size: 16px;
+	}
+
+	.collectionsp {
+		font-size: 16px;
+	}
+
+	.collectionSelect {
+		width: 145px;
+	}
+
+	.gif {
+		width: 180px;
+		height: 180px;
+	}
+
+	.loading {
+		font-size: 26px;
+	}
+
+	.h3 {
+		font-size: 20px;
+	}
+
+	.itemfav {
+		min-height: 221px;
+	}
+
+	.itemContainer {
+		padding: 15px 7px;
+		min-height: 221px;
+	}
+
+	.itemImage {
+		width: 180px;
+	}
+
+	.itemName {
+		font-size: 25px;
+	}
+
 	.rarityp {
-		font-size: 14px;
+		font-size: 18px;
 	}
 
 	.rarityImg {
-		width: 15px;
+		width: 18px;
+	}
+
+	.itemsContainer {
+		padding: 13px 30px 13px 30px;
+		height: 100%;
+		gap: 28px;
+	}
+}
+
+@media (max-width: 1023px) {
+	.nav {
+		margin-top: 60px;
+		margin-right: 5px;
+	}
+
+	.main {
+		margin-top: 60px;
+	}
+
+	.rarityh2 {
+		font-size: 17px;
+	}
+
+	.rarityOptions {
+		font-size: 12px;
+	}
+
+	.attackh2 {
+		font-size: 16px;
+	}
+
+	.collectionsp {
+		font-size: 16px;
+	}
+
+	.collectionSelect {
+		width: 145px;
+	}
+
+	.gif {
+		width: 180px;
+		height: 180px;
+	}
+
+	.loading {
+		font-size: 26px;
+	}
+
+	.h3 {
+		font-size: 20px;
+	}
+
+	.itemContainer {
+		padding: 15px 7px;
+		min-height: 221px;
+	}
+
+	.itemImage {
+		width: 100px;
+	}
+
+	.itemName {
+		font-size: 13px;
+	}
+
+	.rarityp {
+		font-size: 11px;
+	}
+
+	.rarityImg {
+		width: 11px;
+	}
+
+	.itemsContainer {
+		padding: 13px 30px 13px 30px;
+		height: 100%;
+		gap: 28px;
+	}
+}
+
+@media (max-width: 900px) {
+	.nav {
+		margin-top: 60px;
+		margin-right: 5px;
+		position: absolute;
+    background-color: rgb(50, 83, 106);
+		z-index: 2;
+		width: 100%;
+		height: 100%;
+	}
+
+	.shopNavArrow {
+		font-size: 40px;
+	}
+
+	.main {
+		margin-top: 60px;
+	}
+
+	.rarityh2 {
+		font-size: 45px;
+	}
+
+	.rarityOptions {
+		font-size: 25px;
+	}
+
+	.attackh2 {
+		font-size: 45px;
+	}
+
+	.collectionsp {
+		font-size: 45px;
+	}
+
+	.collectionSelect {
+		width: 300px;
+	}
+
+	.gif {
+		width: 320px;
+		height: 320px;
+	}
+
+	.loading {
+		font-size: 52px;
+	}
+
+	.h3 {
+		font-size: 25px;
+	}
+
+	.itemContainer {
+		padding: 15px 7px;
+	}
+
+	.itemImage {
+		width: 250px;
+	}
+
+	.itemName {
+		font-size: 30px;
+	}
+
+	.rarityp {
+		font-size: 20px;
+	}
+
+	.rarityImg {
+		width: 20px;
+	}
+
+	.itemsContainer {
+		padding: 13px 30px;
+		height: 100%;
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-height: 880px) and (max-width: 899px)  {
+	.nav {
+		margin-top: 50px;
+		margin-right: 5px;
+		position: absolute;
+    background-color: rgb(50, 83, 106);
+		z-index: 2;
+		width: 100%;
+		height: 100%;
+	}
+
+	.shopNavArrow {
+		font-size: 40px;
+	}
+
+	.main {
+		margin-top: 60px;
+	}
+
+	.rarityh2 {
+		font-size: 28px;
+	}
+
+	.rarityOptions {
+		font-size: 20px;
+		gap: 0px;
+	}
+
+	.attackh2 {
+		font-size: 28px;
+	}
+
+	.collectionsp {
+		font-size: 28px;
+	}
+
+	.collectionSelect {
+		width: 300px;
+	}
+
+	.gif {
+		width: 320px;
+		height: 320px;
+	}
+
+	.loading {
+		font-size: 52px;
+	}
+
+	.h3 {
+		font-size: 22px;
+	}
+
+	.itemContainer {
+		padding: 15px 7px;
+	}
+
+	.itemImage {
+		width: 220px;
+	}
+
+	.itemName {
+		font-size: 26px;
+	}
+
+	.rarityp {
+		font-size: 18px;
+	}
+
+	.rarityImg {
+		width: 20px;
+	}
+
+	.itemsContainer {
+		padding: 13px 30px;
+		height: 100%;
+		grid-template-columns: 1fr;
+	}
+
+	.attackContainer {
+		margin-top: 0px;
+		gap: 20px;
+	}
+
+	.rarityContainer {
+		gap: 0px;
+	}
+
+	.collectionContainer {
+		margin-top: 0px;
+		gap: 0px;
 	}
 }

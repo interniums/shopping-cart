@@ -8,6 +8,6 @@ export default function getRandomObjects(arr) {
 		const j = Math.floor(Math.random() * (i + 1));
 		[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
 	}
-	const newArray = shuffled.slice(0, 5)
+	const newArray = shuffled.slice(0, 4)
 	return newArray
 }

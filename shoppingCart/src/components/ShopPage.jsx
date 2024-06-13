@@ -12,12 +12,27 @@ import getColor from '../utils/getColor.js'
 import Tilt from 'react-parallax-tilt'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { DataContext } from '../App.jsx'
 import Favorites from './Favorites.jsx'
 import { Link } from 'react-router-dom'
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 export default function ShopPage() {
+	const [shopNav, setShopNav] = useState(false)
+
+	useEffect(() => {
+    if (shopNav) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [shopNav])
+
 	const {
 		sortFavorites,
 		setSortFavorites,
@@ -38,7 +53,7 @@ export default function ShopPage() {
 		setMainData(prevArr => {
 			return prevArr.map(obj => {
 				if (obj.name === name) {
-					return { ...obj, cart: obj.cart ? false : true }
+					return { ...obj, cart: !obj.cart }
 				}
 				return obj
 			})
@@ -49,7 +64,7 @@ export default function ShopPage() {
 		setMainData(prevArr => {
 			return prevArr.map(obj => {
 				if (obj.name === name) {
-					return { ...obj, favorite: obj.favorite ? false : true }
+					return { ...obj, favorite: !obj.favorite }
 				}
 				return obj
 			})
@@ -58,14 +73,14 @@ export default function ShopPage() {
 
 	const chooseColor = (name) => {
 		const object = maindata?.find(item => item.name === name)
-		if (object?.favorite == true) return 'red'
-		if (object?.favorite == true) return 'rgb(225, 225, 225)'
+		if (object?.favorite === true) return 'red'
+		if (object?.favorite === true) return 'rgb(225, 225, 225)'
 	}
 
 	const chooseColorCart = (name) => {
 		const object = maindata?.find(item => item.name === name)
-		if (object?.cart == true) return 'green'
-		if (object?.cart == true) return 'rgb(225, 225, 225)'
+		if (object?.cart === true) return 'green'
+		if (object?.cart === true) return 'rgb(225, 225, 225)'
 	}
 	
 	return(
@@ -96,6 +111,9 @@ export default function ShopPage() {
 						<div className={styles.loading}>LOADING...</div>
 					</div> : 
 					<>
+						{!shopNav ? <KeyboardArrowRightIcon id='arrow1' onClick={() => setShopNav(!shopNav)}/> : <KeyboardArrowLeftIcon id='arrow2' onClick={() => setShopNav(!shopNav)}/>}
+					{
+						shopNav ?
 						<ShopNav 
 							collections={collections}
 							sortRarity={sortRarity}
@@ -103,7 +121,8 @@ export default function ShopPage() {
 							setSortCollections={setSortCollections}
 							setSortRarity={setSortRarity}
 							setSortAttack={setSortAttack}
-						/>
+						/> : null
+					}
 						<main className={styles.main}>
 							<h3 className={styles.h3} style={{ marginLeft: '60px'}}>{sortFavorites ? 'Favorites' : 'Cards'}({!sortFavorites ? sortedData?.length : maindata.filter(item => item.favorite).length})</h3>
 							<div className={styles.itemsContainer}>
@@ -115,7 +134,9 @@ export default function ShopPage() {
 											setMainData={setMainData}
 										/> :
 										sortedData?.map(item => (
-											<div style={{position: 'relative'}} key={item.cardId}>
+											<div
+												className={styles.itemDiv}
+												style={{position: 'relative'}} key={item.cardId}>
 													<Tilt
 														tiltReverse={true}
 														tiltMaxAngleX={0}
@@ -137,17 +158,19 @@ export default function ShopPage() {
 																}}
 															>
 																<div>
-																	<FavoriteIcon 
+																	<FavoriteIcon
+																		id='shopFavoriteItem' 
 																		onClick={(event) => {event.stopPropagation(); event.preventDefault(); handleFavorite(item.name)}}
 																		className={styles.favorite}
-																		style={{cursor: 'pointer', position: 'absolute', width: '25px', right: '15px', top: '15px', color: chooseColor(item.name)}}
+																		style={{cursor: 'pointer', position: 'absolute', color: chooseColor(item.name)}}
 																	/>
 																</div>
 																<div>
-																	<ShoppingCartIcon 
+																	<ShoppingCartIcon
+																		id='shopCartItem'  
 																		onClick={(event) => {event.stopPropagation(); event.preventDefault(); handleCart(item.name)}}
 																		className={styles.cart}
-																		style={{cursor: 'pointer', position: 'absolute', width: '25px', right: '15px', top: '50px', color: chooseColorCart(item.name)}}
+																		style={{cursor: 'pointer', position: 'absolute', color: chooseColorCart(item.name)}}
 																	/>
 																</div>
 																<img className={styles.itemImage} src={item.img} alt="" />

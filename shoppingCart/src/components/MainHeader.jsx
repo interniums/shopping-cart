@@ -96,7 +96,7 @@ export default function MainHeader(props) {
 									fontSize='large'
 									style={{color: props.sortFavorites ? 'red' : 'white'}}	
 								/>
-									<div className='headerCount'>{favorites}</div>
+									<div className={styles.headerCount}>{favorites}</div>
 							</div>
 						</Link>
 						<div style={{display: 'flex', gap: '10px', alignItems: 'center'}}>

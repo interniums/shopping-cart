@@ -47,3 +47,132 @@
 .cartButton:hover {
 	scale: 105%;
 }
+
+.itemh1 {
+	font-size: 45px;
+}
+
+.itemp {
+	font-size: 25px;
+}
+
+.buttonContainer {
+	margin-top: 20px;
+}
+
+@media (max-width: 1350px) {
+	.image {
+		width: 300px;
+	}
+
+	.itemh1 {
+		font-size: 33px;
+	}
+
+	.itemp {
+		font-size: 22px;
+	}
+
+	.cartButton {
+		font-size: 20px;
+		padding: 11px 18px;
+	}
+}
+
+@media (max-width: 1023px) {
+	.image {
+		width: 200px;
+	}
+
+	.itemh1 {
+		font-size: 23px;
+	}
+
+	.itemp {
+		font-size: 15px;
+	}
+
+	.cartButton {
+		font-size: 12px;
+		padding: 8px 14px;
+	}
+}
+
+.header {
+	margin: 50px 25px 0px 25px;
+}
+
+@media (max-width: 900px) {
+	.image {
+		width: 300px;
+	}
+
+	.header {
+		margin: 0px 25px 0px 25px;
+	}
+
+	.container {
+		padding: 15px;
+	}
+
+	.itemh1 {
+		font-size: 35px;
+	}
+
+	.itemp {
+		font-size: 20px;
+		word-wrap: break-word;
+	}
+
+	.cartButton {
+		font-size: 20px;
+		padding: 12px 20px;
+	}
+
+	.main {
+		display: grid;
+		gap: 10px;
+	}
+}
+
+@media (max-height: 880px) and (max-width: 899px) {
+	.image {
+		width: 260px;
+	}
+
+	.header {
+		margin: 0px 25px 0px 25px;
+	}
+
+	.container {
+		padding: 0px 15px;
+	}
+
+	.itemh1 {
+		font-size: 28px;
+	}
+
+	.itemp {
+		font-size: 18px;
+		word-wrap: break-word;
+	}
+
+	.cartButton {
+		font-size: 18px;
+		padding: 12px 16px;
+	}
+
+	.main {
+		display: grid;
+		gap: 0px;
+		margin-top: -20px;
+	}
+
+	.buttonContainer {
+		margin-top: 10px;
+	}
+
+	.namep {
+		margin-top: -20px;
+	}
+}

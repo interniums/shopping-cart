@@ -43,7 +43,7 @@ export default function ItemOverview() {
 		setMainData(prevArr => {
 			return prevArr.map(obj => {
 				if (obj.name === childProps.name) {
-					return { ...obj, cart: obj.cart ? false : true }
+					return { ...obj, cart: !obj.cart }
 				}
 				return obj
 			})
@@ -64,9 +64,9 @@ export default function ItemOverview() {
 				setSortFavorites={setSortFavorites}	
 				maindata={maindata}
 			/>
-			<header style={{margin: '50px 50px 0px 50px'}}>
+			<header className={styles.header}>
 				<Link onClick={() => resetStates()} style={{textDecoration: 'none', color: 'inherit'}} to='/shop'>
-					<ArrowBackIcon className={styles.arrow} style={{fontSize: '50px', cursor: 'pointer', marginBottom: '30px'}}/>
+					<ArrowBackIcon id='itemArrow' className={styles.arrow} style={{ cursor: 'pointer'}}/>
 				</Link>
 			</header>
 			<div className={styles.container}>
@@ -86,17 +86,17 @@ export default function ItemOverview() {
 						</div>	
 					</Tilt>
 					<div className={styles.infoContainer}>
-						<div>
-							<h1 style={{fontSize: '45px', marginTop: '-20px'}}>{childProps.name}</h1>
-							<p style={{fontSize: '25px'}}>{childProps.collection}</p>
+						<div className={styles.namep}>
+							<h1 className={styles.itemh1} style={{marginTop: '-20px'}}>{childProps.name}</h1>
+							<p className={styles.itemp}>{childProps.collection}</p>
 						</div>
-						<div>
-							<p  style={{fontSize: '45px', fontWeight: 'bold'}}>${childProps.cost * 8.5 + 3}</p>
-							<p  style={{fontSize: '20px', textAlign: ''}}>{childProps.flavor}</p>
+						<div className={styles.infop}>
+							<p className={styles.itemh1} style={{fontWeight: 'bold'}}>${childProps.cost * 8.5 + 3}</p>
+							<p id='deleteinfo' className={styles.itemp}>{childProps.flavor}</p>
 						</div>
-						<div style={{display: 'grid', justifyContent: '', gap: '20px', marginTop: '30px', justifyItems: 'center'}}>
+						<div className={styles.buttonContainer} style={{display: 'grid', justifyContent: '', gap: '20px', justifyItems: 'center'}}>
 							<button style={{color: childProps.cart ? 'green' : 'rgb(225, 225, 225)'}} onClick={() => handleCart()} className={styles.cartButton}>
-								<ShoppingCartIcon />Add to Cart
+								<ShoppingCartIcon id='itemCart' />Add to Cart
 							</button>
 							<Link
 								to='/cart'

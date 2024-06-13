@@ -9,6 +9,7 @@
 .loading {
 	text-align: center;
 	margin-right: 20px;
+	font-size: 40px;
 }
 
 .container {
@@ -77,6 +78,10 @@
 	scale: 115%;
 }
 
+.header {
+	margin-bottom: 15px;
+} 
+
 .cardContainer {
 	display: grid;
 	justify-content: center;
@@ -123,4 +128,240 @@
 .delete:hover {
 	scale: 115%;
 	cursor: pointer;
+}
+
+.mainLeft {
+	width: 55%;
+}
+
+.price {
+	font-size: 20px;
+}
+
+.main {
+	padding: 50px;	
+}
+
+.buttonContainer {
+	margin-top: 20px;
+}
+
+@media  (max-width: 1279px) {
+	.main {
+		padding: 20px;	
+	}
+
+	.mainRight {
+		padding: 10px;
+	}
+
+	.header {
+		margin-left: 10px;
+	}
+
+	.gif {
+		width: 220px;
+		height: 220px;
+	}
+
+	.loading {
+		font-size: 32px;
+	}
+
+	.carth2 {
+		font-size: 18px;
+	}
+
+	.itemImage {
+		width: 140px;
+	}
+
+	.itemName {
+		font-size: 18px;
+	}
+
+	.cartp {
+		font-size: 14px;
+	}
+
+	.price {
+		font-size: 16px;
+	}
+
+	.carth1 {
+		font-size: 26px;
+	}
+
+	.button {
+		font-size: 16px;
+		padding: 10px 17px;
+	}
+
+	.orderContainer {
+		padding: 32px;
+	}
+}
+
+@media  (max-width: 900px) {
+	.main {
+		padding: 20px;
+		display: grid;	
+	}
+
+	.mainRight {
+		padding: 20px;
+		width: 100%;
+	}
+
+	.header {
+		margin-left: 10px;
+	}
+
+	.gif {
+		width: 320px;
+		height: 320px;
+	}
+
+	.loading {
+		font-size: 52px;
+	}
+
+	.carth2 {
+		font-size: 27px;
+	}
+
+	.itemImage {
+		width: 300px;
+	}
+
+	.itemInfo {
+		padding: 0;
+	}
+
+	.itemName {
+		font-size: 24px;
+	}
+
+	.cartp {
+		font-size: 22px;
+	}
+
+	.price {
+		font-size: 28px;
+	}
+
+	.carth1 {
+		font-size: 32px;
+	}
+
+	.button {
+		font-size: 25px;
+		padding: 15px 25px;
+	}
+
+	.orderContainer {
+		padding: 32px;
+		margin-top: 0px;
+	}
+
+	.mainLeft {
+		width: 100%;
+		display: grid;
+	}
+
+	.item {
+		display: grid;
+		width: 100%;
+		justify-items: center;
+		margin: 10px 0px;
+	}
+
+	.items {
+		width: 100%;
+	}
+}
+
+@media (max-height: 880px ) and (max-width: 899px)  {
+	.main {
+		padding: 0px 10px;
+		display: grid;	
+	}
+
+	.mainRight {
+		padding: 20px;
+		width: 100%;
+	}
+
+	.header {
+		margin-left: 10px;
+		margin-bottom: 0px;
+	}
+
+	.gif {
+		width: 320px;
+		height: 320px;
+	}
+
+	.loading {
+		font-size: 52px;
+	}
+
+	.carth2 {
+		font-size: 21px;
+	}
+
+	.itemImage {
+		width: 300px;
+	}
+
+	.itemInfo {
+		padding: 0;
+	}
+
+	.itemName {
+		font-size: 26px;
+	}
+
+	.cartp {
+		font-size: 19px;
+	}
+
+	.price {
+		font-size: 28px;
+	}
+
+	.carth1 {
+		font-size: 28px;
+	}
+
+	.button {
+		font-size: 21px;
+		padding: 15px 25px;
+	}
+
+	.orderContainer {
+		padding: 32px;
+		margin-top: 0px;
+		gap: 8px;
+	}
+
+	.mainLeft {
+		width: 100%;
+		display: grid;
+	}
+
+	.item {
+		display: grid;
+		width: 100%;
+		justify-items: center;
+		margin: 5px 0px;
+	}
+
+	.items {
+		width: 100%;
+	}
+
+	.buttonContainer {
+		margin-top: 10px;
+	}
 }

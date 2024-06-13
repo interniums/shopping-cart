@@ -43,7 +43,7 @@ export default function Favorites(props) {
 	<>
 		{
 				data?.map(item => (
-				<div style={{position: 'relative'}} key={item.cardId}>
+				<div className={styles.itemfav} style={{position: 'relative'}} key={item.cardId}>
 					<Link
 						onClick={() => setItemOverview(item.name)}
 						to='/itemOverview'
