@@ -22,6 +22,8 @@ export default function ItemOverview() {
 		setSortCollections
 	} = useContext(DataContext)
 
+	console.log(itemOverview)
+
 	const [childProps, setChildProps] = useState({
 		name: null,
 		img: null, 

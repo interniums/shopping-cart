@@ -73,7 +73,7 @@ export default function MainHeader(props) {
 											<Link 
 												key={item.name}
 												style={{textDecoration: 'none', color: 'inherit'}}
-												onClick={() => {setItemOverview(item.name); resetStates()}}
+												onClick={() => {setItemOverview(item.name)}}
 												to={`/itemOverview`}
 											>
 												<div className={styles.dropItem}>
