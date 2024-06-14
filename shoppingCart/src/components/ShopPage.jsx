@@ -23,7 +23,7 @@ export default function ShopPage() {
 	const [shopNav, setShopNav] = useState(false)
 
 	useEffect(() => {
-    if (shopNav) {
+    if (shopNav && window.innerWidth < 900) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''

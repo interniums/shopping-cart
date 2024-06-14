@@ -198,6 +198,8 @@
 		padding: 13px 30px 13px 30px;
 		height: 100%;
 		gap: 28px;
+		
+		grid-template-columns: 1fr 1fr 1fr;
 	}
 }
 
@@ -246,7 +248,7 @@
 
 	.itemContainer {
 		padding: 15px 7px;
-		min-height: 221px;
+		min-height: 227px;
 	}
 
 	.itemImage {
@@ -269,6 +271,7 @@
 		padding: 13px 30px 13px 30px;
 		height: 100%;
 		gap: 28px;
+		grid-template-columns: 1fr 1fr 1fr;
 	}
 }
 
